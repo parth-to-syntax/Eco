@@ -16,7 +16,7 @@ export const Header = () => {
   const cartItemCount = cart?.items.reduce((sum, item) => sum + item.quantity, 0) || 0;
 
   const navItems = [
-    { label: 'Products', path: '/products' },
+    { label: 'Products', path: '/products', authRequired: true },
     { label: 'My Listings', path: '/my-listings', authRequired: true },
     { label: 'Cart', path: '/cart', authRequired: true },
     { label: 'Profile', path: '/profile', authRequired: true },

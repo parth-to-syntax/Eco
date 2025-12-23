@@ -207,12 +207,16 @@ export const ProductsPage = () => {
               </div>
               <h3 className="text-lg font-medium mb-2">No products found</h3>
               <p className="text-muted-foreground mb-6">
-                Try adjusting your search or filters
+                {products.length === 0 
+                  ? "No products available yet. Be the first to list an item!"
+                  : "Try adjusting your search or filters"}
               </p>
-              <Button onClick={() => navigate('/add-product')}>
-                <Plus className="h-4 w-4 mr-2" />
-                Add the first product
-              </Button>
+              {user && (
+                <Button onClick={() => navigate('/add-product')}>
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add a product
+                </Button>
+              )}
             </div>
           </div>
         ) : (

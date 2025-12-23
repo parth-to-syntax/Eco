@@ -105,17 +105,20 @@ export const AuthPage = () => {
         toast({
           title: "Success",
           description: isLogin ? "Welcome back!" : "Account created successfully!",
+          duration: 3000,
         });
         navigate('/products');
       }
     } catch (error) {
-      if (import.meta.env.VITE_DEBUG === '1') {
-        console.error('[AUTH_SUBMIT_ERROR]', error);
-      }
+      console.error('[AUTH_SUBMIT_ERROR]', error);
+      const errorMessage = error?.response?.data?.message || 
+                          error?.message || 
+                          "Something went wrong. Please try again.";
       toast({
         title: "Error",
-        description: (error?.response?.data?.message) || "Something went wrong. Please try again.",
+        description: errorMessage,
         variant: "destructive",
+        duration: 5000,
       });
     }
   };

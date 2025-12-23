@@ -14,46 +14,24 @@ function setAuthCookie(res, token) {
 
 export async function register(req, res) {
   const { name, email, password, avatar } = req.body || {};
-  if (!name || !email || !password) return res.status(400).json({ message: 'All fields required' });
+  console.log('[REGISTER_REQUEST]', { name, email: email?.substring(0, 5) + '***', hasPassword: !!password, hasAvatar: !!avatar });
+  
+  if (!name || !email || !password) {
+    console.warn('[REGISTER_MISSING_FIELDS]', { name: !!name, email: !!email, password: !!password });
+    return res.status(400).json({ message: 'All fields required' });
+  }
 
   const normalizedEmail = email.trim().toLowerCase();
-  // Debug log (remove in production)
-  if (process.env.NODE_ENV !== 'production') {
-    console.log('[REGISTER_ATTEMPT]', {
-      originalEmail: email,
-      normalizedEmail,
-      time: new Date().toISOString(),
-      bodyKeys: Object.keys(req.body || {})
-    });
-    try {
-      const count = await User.countDocuments();
-      const strict = await User.findOne({ email: normalizedEmail });
-      const ci = await User.findOne({ email: new RegExp(`^${normalizedEmail}$`, 'i') });
-      console.log('[REGISTER_PRECHECK]', {
-        userCount: count,
-        strictMatch: strict?._id?.toString() || null,
-        ciMatch: ci?._id?.toString() || null,
-        ciMatchEmail: ci?.email || null
-      });
-    } catch (e) {
-      console.warn('[REGISTER_PRECHECK_ERROR]', e.message);
-    }
-  }
-  // We skip the pre-check to avoid any race or collation oddities; rely on unique index.
-  // Additional runtime diagnostics if DEBUG_AUTH is enabled.
-  const diag = {};
-  if (process.env.DEBUG_AUTH === '1') {
-    try {
-      diag.indexes = await User.collection.indexes();
-      diag.count = await User.countDocuments();
-      diag.sample = await User.find({}, { email: 1 }).limit(5).lean();
-      console.log('[REGISTER_DIAG]', JSON.stringify(diag));
-    } catch (e) {
-      console.warn('[REGISTER_DIAG_ERROR]', e.message);
-    }
-  }
+  console.log('[REGISTER_ATTEMPT]', {
+    originalEmail: email,
+    normalizedEmail,
+    time: new Date().toISOString()
+  });
+
   try {
     const user = await User.create({ name, email: normalizedEmail, password, avatar });
+    console.log('[REGISTER_SUCCESS]', { userId: user._id, email: user.email });
+    
     const token = generateToken(user);
     setAuthCookie(res, token);
     res.status(201).json({
@@ -62,24 +40,27 @@ export async function register(req, res) {
       authType: 'cookie+bearer'
     });
   } catch (err) {
-    if (process.env.DEBUG_AUTH === '1') {
-      console.error('[REGISTER_CREATE_ERROR_RAW]', err);
-      try {
-        const existing = await User.findOne({ email: normalizedEmail }).lean();
-        console.log('[POST_ERROR_LOOKUP]', existing ? existing._id : 'NO_EXISTING');
-      } catch {}
-    }
+    console.error('[REGISTER_ERROR]', {
+      message: err.message,
+      code: err.code,
+      name: err.name
+    });
+    
     // Handle race condition duplicate
     if (err?.code === 11000 || /duplicate key/i.test(err?.message || '')) {
-      if (process.env.NODE_ENV !== 'production') {
-        console.warn('[REGISTER_DUPLICATE]', err?.message);
-      }
-      return res.status(400).json({ message: 'User already exists', email: normalizedEmail, code: 'DUPLICATE_EMAIL' });
+      console.warn('[REGISTER_DUPLICATE]', { email: normalizedEmail });
+      return res.status(400).json({ 
+        message: 'Email already registered. Please use a different email or try logging in.', 
+        email: normalizedEmail, 
+        code: 'DUPLICATE_EMAIL' 
+      });
     }
-    if (process.env.NODE_ENV !== 'production') {
-      console.error('[REGISTER_ERROR]', err);
-    }
-    return res.status(500).json({ message: 'Registration failed', error: err.message, code: 'REGISTER_ERROR' });
+    
+    return res.status(500).json({ 
+      message: 'Registration failed. Please try again.', 
+      error: process.env.NODE_ENV !== 'production' ? err.message : undefined,
+      code: 'REGISTER_ERROR' 
+    });
   }
 }
 
@@ -99,17 +80,26 @@ export async function debugListUsers(req, res) {
 export async function login(req, res) {
   const { email, password } = req.body || {};
   const normalizedEmail = (email || '').trim().toLowerCase();
+  
+  console.log('[LOGIN_ATTEMPT]', { email: normalizedEmail.substring(0, 5) + '***', time: new Date().toISOString() });
+  
   const user = await User.findOne({ email: normalizedEmail });
-  if (process.env.DEBUG_AUTH === '1') {
-    console.log('[LOGIN_ATTEMPT]', { input: email, normalizedEmail, found: !!user });
+  if (!user) {
+    console.warn('[LOGIN_FAIL_NO_USER]', { email: normalizedEmail });
+    return res.status(401).json({ message: 'Invalid email or password' });
   }
-  if (!user) return res.status(401).json({ message: 'Invalid credentials' });
+  
   const match = await user.matchPassword(password);
-  if (!match) return res.status(401).json({ message: 'Invalid credentials' });
+  if (!match) {
+    console.warn('[LOGIN_FAIL_BAD_PASSWORD]', { userId: user._id });
+    return res.status(401).json({ message: 'Invalid email or password' });
+  }
+  
+  console.log('[LOGIN_SUCCESS]', { userId: user._id, email: user.email });
   const token = generateToken(user);
   setAuthCookie(res, token);
   res.json({
-  user: { id: user._id, name: user.name, email: user.email, avatar: user.avatar || null },
+    user: { id: user._id, name: user.name, email: user.email, avatar: user.avatar || null },
     token,
     authType: 'cookie+bearer'
   });
