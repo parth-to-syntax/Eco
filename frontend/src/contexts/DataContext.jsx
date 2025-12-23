@@ -104,7 +104,7 @@ export const DataProvider = ({ children }) => {
     try {
       const res = await api.get('/api/orders/history');
       const orders = res.data?.orders || [];
-      const mapped: Purchase[] = orders.map((o) => ({
+      const mapped = orders.map((o) => ({
         id: o._id,
         userId: o.user,
         items: o.items.map((it) => ({ productId: it.product?._id || it.product, quantity: it.quantity })),

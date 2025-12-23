@@ -95,9 +95,9 @@ export const reducer = (state, action) => {
   }
 }
 
-const listeners: Array<(state) => void> = []
+const listeners = []
 
-let memoryState: State = { toasts: [] }
+let memoryState = { toasts: [] }
 
 function dispatch(action) {
   memoryState = reducer(memoryState, action)
