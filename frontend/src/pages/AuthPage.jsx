@@ -48,9 +48,10 @@ export const AuthPage = () => {
     
     if (!isLogin && password !== confirmPassword) {
       toast({
-        title: "Error",
-        description: "Passwords do not match",
+        title: "❌ Passwords Don't Match",
+        description: "The passwords you entered don't match. Please make sure both password fields are identical.",
         variant: "destructive",
+        duration: 4000,
       });
       return;
     }
@@ -65,9 +66,17 @@ export const AuthPage = () => {
   if (isLogin) {
         success = await login(normalizedEmail, password);
         if (!success) {
+          const errorMsg = lastError || "Invalid email or password";
+          const isWrongPassword = errorMsg.toLowerCase().includes('password') || errorMsg.toLowerCase().includes('incorrect');
+          const isUserNotFound = errorMsg.toLowerCase().includes('not found') || errorMsg.toLowerCase().includes('no user');
+          
           toast({
-            title: "Login Failed",
-            description: lastError || "Invalid email or password. Please check your credentials and try again.",
+            title: isWrongPassword ? "❌ Wrong Password" : isUserNotFound ? "❌ Account Not Found" : "🚫 Login Failed",
+            description: isWrongPassword ? 
+              "The password you entered is incorrect. Please try again or reset your password." :
+              isUserNotFound ?
+              "No account found with this email. Please check your email or register for a new account." :
+              "Invalid email or password. Please check your credentials and try again.",
             variant: "destructive",
             duration: 5000
           });
@@ -92,10 +101,19 @@ export const AuthPage = () => {
           const message = lastError || 'Registration failed';
           const isDuplicate = message.toLowerCase().includes('already registered') || 
                             message.toLowerCase().includes('duplicate');
+          const isInvalidEmail = message.toLowerCase().includes('invalid') && message.toLowerCase().includes('email');
+          const isWeakPassword = message.toLowerCase().includes('password') && (message.toLowerCase().includes('weak') || message.toLowerCase().includes('short'));
+          
           toast({
-            title: isDuplicate ? 'Account Already Exists' : 'Registration Failed',
+            title: isDuplicate ? '⚠️ Account Already Exists' : 
+                   isInvalidEmail ? '❌ Invalid Email' :
+                   isWeakPassword ? '🔒 Weak Password' : '❌ Registration Failed',
             description: isDuplicate ? 
-              'This email is already registered. Please login or use a different email.' : 
+              'This email is already registered. Please login instead or use a different email address.' :
+              isInvalidEmail ?
+              'Please enter a valid email address.' :
+              isWeakPassword ?
+              'Your password is too weak. Please use a stronger password with at least 6 characters.' :
               message,
             variant: 'destructive',
             duration: 5000
@@ -109,8 +127,8 @@ export const AuthPage = () => {
       
       if (success) {
         toast({
-          title: "Success",
-          description: isLogin ? "Welcome back!" : "Account created successfully!",
+          title: isLogin ? "✅ Welcome Back!" : "✅ Account Created!",
+          description: isLogin ? "You've successfully logged in." : "Your account has been created successfully!",
           duration: 3000,
         });
         navigate('/products');
@@ -121,7 +139,7 @@ export const AuthPage = () => {
                           error?.message || 
                           "Something went wrong. Please try again.";
       toast({
-        title: "Error",
+        title: "⚠️ Error Occurred",
         description: errorMessage,
         variant: "destructive",
         duration: 5000,

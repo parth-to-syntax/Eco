@@ -30,8 +30,9 @@ export const CartPage = () => {
   const handleRemoveItem = (productId) => {
     removeFromCart(productId);
     toast({
-      title: "Item removed",
-      description: "Product removed from cart",
+      title: "🗑️ Item Removed",
+      description: "Product has been removed from your cart.",
+      duration: 3000,
     });
   };
 
@@ -39,8 +40,9 @@ export const CartPage = () => {
     if (cartItems.length === 0) return;
     checkout('razorpay');
     toast({
-      title: 'Order placed!',
-      description: 'Your payment was successful and order is placed.'
+      title: '✅ Order Placed Successfully!',
+      description: 'Your payment was successful and your order has been confirmed.',
+      duration: 3000,
     });
     navigate('/profile');
   };
@@ -49,8 +51,9 @@ export const CartPage = () => {
     if (cartItems.length === 0) return;
     checkout('pay_later');
     toast({
-      title: 'Order created (Pay Later)',
-      description: 'You chose Pay Later. Complete payment later from your orders section.'
+      title: '📝 Order Created (Pay Later)',
+      description: 'Your order has been created. You can complete the payment later from your orders section.',
+      duration: 3000,
     });
     navigate('/profile');
   };

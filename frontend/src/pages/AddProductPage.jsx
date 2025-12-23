@@ -71,18 +71,20 @@ export const AddProductPage = () => {
     
     if (!user) {
       toast({
-        title: "Error",
-        description: "You must be logged in to add products",
+        title: "🔒 Authentication Required",
+        description: "You must be logged in to add products. Please sign in first.",
         variant: "destructive",
+        duration: 4000,
       });
       return;
     }
 
     if (!title.trim() || !description.trim() || !category || !price || !quantity || !condition) {
       toast({
-        title: "Error",
-        description: "Please fill in all required fields",
+        title: "⚠️ Missing Required Fields",
+        description: "Please fill in all required fields: title, description, category, price, quantity, and condition.",
         variant: "destructive",
+        duration: 4000,
       });
       return;
     }
@@ -111,9 +113,10 @@ export const AddProductPage = () => {
 
     if (yearNumber && (yearNumber < 1900 || yearNumber > new Date().getFullYear())) {
       toast({
-        title: "Error",
-        description: "Please enter a valid year of manufacture",
-        variant: "destructive",
+        title: \"📅 Invalid Year\",
+        description: `Please enter a valid year between 1900 and ${new Date().getFullYear()}.`,
+        variant: \"destructive\",
+        duration: 4000,
       });
       return;
     }
@@ -140,8 +143,9 @@ export const AddProductPage = () => {
           workingConditionDescription: workingConditionDescription.trim() || undefined,
         });
         toast({
-          title: "Success",
-          description: "Product updated successfully!",
+          title: "✅ Product Updated!",
+          description: `${title} has been updated successfully.`,
+          duration: 3000,
         });
       } else {
         if (import.meta.env.VITE_DEBUG === '1') {
@@ -174,24 +178,27 @@ export const AddProductPage = () => {
         });
         if (!ok) {
           toast({
-            title: 'Error',
-            description: 'Failed to add product (network or validation).',
-            variant: 'destructive'
+            title: '❌ Failed to Add Product',
+            description: 'Unable to add product. Please check your connection and try again.',
+            variant: 'destructive',
+            duration: 4000,
           });
           return;
         }
         toast({
-          title: "Success",
-          description: "Product added successfully!",
+          title: "✅ Product Added!",
+          description: `${title} has been added to your listings successfully.`,
+          duration: 3000,
         });
       }
       
       navigate('/my-listings');
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to save product. Please try again.",
+        title: "⚠️ Error Saving Product",
+        description: "Failed to save product. Please check your connection and try again.",
         variant: "destructive",
+        duration: 4000,
       });
     }
   };

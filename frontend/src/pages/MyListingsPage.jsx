@@ -44,19 +44,21 @@ export const MyListingsPage = () => {
   };
 
   const handleDelete = async (productId, productTitle) => {
-    if (window.confirm(`Are you sure you want to delete "${productTitle}"?`)) {
+    if (window.confirm(`⚠️ Are you sure you want to delete "${productTitle}"? This action cannot be undone.`)) {
       const ok = await deleteProduct(productId);
       if (ok) {
         setUserProducts(prev => prev.filter(p => p._id === productId ? false : true));
         toast({
-          title: 'Success',
-          description: 'Product deleted successfully',
+          title: '✅ Product Deleted',
+          description: `"${productTitle}" has been removed from your listings.`,
+          duration: 3000,
         });
       } else {
         toast({
-          title: 'Error',
+          title: '❌ Deletion Failed',
           variant: 'destructive',
-          description: 'Failed to delete product',
+          description: 'Failed to delete product. Please try again.',
+          duration: 4000,
         });
       }
     }
