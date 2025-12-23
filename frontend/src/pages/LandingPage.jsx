@@ -26,24 +26,7 @@ const LandingPage = () => {
         <div className="absolute inset-0 z-20 flex items-center justify-center">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center space-y-8">
-              <Badge variant="outline" className="px-6 py-2 text-sm border-emerald-500/50 bg-emerald-500/10">
-                <Sparkles className="w-4 h-4 mr-2" />
-                Sustainable Shopping Platform
-              </Badge>
-              
-              <h1 className="text-6xl md:text-8xl font-bold tracking-tight">
-                Thrift Earth
-              </h1>
-              
-              <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 text-transparent bg-clip-text">
-                Shop Sustainably
-              </h2>
-              
-              <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                Discover unique pre-loved treasures. Give items a second life while making a positive impact on our planet.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   size="lg" 
                   onClick={handleBrowseProducts}
