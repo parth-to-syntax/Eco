@@ -66,9 +66,10 @@ export const AuthPage = () => {
         success = await login(normalizedEmail, password);
         if (!success) {
           toast({
-            title: "Error",
-            description: lastError || "Invalid email or password",
+            title: "Login Failed",
+            description: lastError || "Invalid email or password. Please check your credentials and try again.",
             variant: "destructive",
+            duration: 5000
           });
           return;
         }
@@ -89,13 +90,18 @@ export const AuthPage = () => {
 	success = await signup(normalizedEmail, password, name, avatarToSend);
         if (!success) {
           const message = lastError || 'Registration failed';
+          const isDuplicate = message.toLowerCase().includes('already registered') || 
+                            message.toLowerCase().includes('duplicate');
           toast({
-            title: 'Error',
-            description: message,
-            variant: 'destructive'
+            title: isDuplicate ? 'Account Already Exists' : 'Registration Failed',
+            description: isDuplicate ? 
+              'This email is already registered. Please login or use a different email.' : 
+              message,
+            variant: 'destructive',
+            duration: 5000
           });
           if (import.meta.env.VITE_DEBUG === '1') {
-            console.debug('[SIGNUP_FAIL]', { email: normalizedEmail, lastError });
+            console.debug('[SIGNUP_FAIL]', { email: normalizedEmail, lastError, isDuplicate });
           }
           return;
         }

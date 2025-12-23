@@ -214,7 +214,7 @@ export const AddProductPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <Header />
       
       <div className="container mx-auto px-4 py-8">
@@ -225,22 +225,22 @@ export const AddProductPage = () => {
               variant="ghost"
               size="sm"
               onClick={() => navigate(-1)}
-              className="p-2"
+              className="p-2 text-white hover:text-pink-400"
             >
               <ArrowLeft className="h-4 w-4" />
             </Button>
             <div>
-              <h1 className="text-2xl font-light tracking-tight">
+              <h1 className="text-2xl font-light tracking-tight text-white">
                 {isEdit ? 'Edit Product' : 'Add New Product'}
               </h1>
-              <p className="text-muted-foreground">
+              <p className="text-gray-400">
                 {isEdit ? 'Update your product details' : 'List a new item for sale'}
               </p>
             </div>
           </div>
 
           {/* Form Card */}
-          <Card className="backdrop-blur-md bg-[#1B1B1B]/80 border border-gray-700 shadow-strong animate-fade-in hover-glow" style={{ animationDelay: '200ms' }}>
+          <Card className="backdrop-blur-md bg-[#1B1B1B]/90 border border-pink-900/30 shadow-2xl animate-fade-in" style={{ animationDelay: '200ms' }}>
             <CardHeader>
               <CardTitle className="font-light text-white">Product Details</CardTitle>
             </CardHeader>
@@ -249,7 +249,7 @@ export const AddProductPage = () => {
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Image Upload */}
                 <div className="space-y-2">
-                  <Label>Product Images</Label>
+                  <Label className="text-white">Product Images</Label>
                   <ImageUpload
                     onImageUpload={handleImageUpload}
                     images={images}
@@ -263,7 +263,7 @@ export const AddProductPage = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Product Title */}
                     <div className="space-y-2 md:col-span-2">
-                      <Label htmlFor="title">Product Title *</Label>
+                      <Label htmlFor="title" className="text-white">Product Title *</Label>
                       <Input
                         id="title"
                         placeholder="Enter product title"
@@ -276,7 +276,7 @@ export const AddProductPage = () => {
 
                     {/* Category (free entry with suggestions) */}
                     <div className="space-y-2">
-                      <Label htmlFor="category">Category *</Label>
+                      <Label htmlFor="category" className="text-white">Category *</Label>
                       <div className="relative">
                         <Input
                           id="category"
@@ -298,7 +298,7 @@ export const AddProductPage = () => {
 
                     {/* Quantity */}
                     <div className="space-y-2">
-                      <Label htmlFor="quantity">Quantity *</Label>
+                      <Label htmlFor="quantity" className="text-white">Quantity *</Label>
                       <Input
                         id="quantity"
                         type="number"
@@ -313,7 +313,7 @@ export const AddProductPage = () => {
 
                     {/* Condition */}
                     <div className="space-y-2">
-                      <Label htmlFor="condition">Condition *</Label>
+                      <Label htmlFor="condition" className="text-white">Condition *</Label>
                       <Select value={condition} onValueChange={setCondition} required>
                         <SelectTrigger className="px-4 py-2 rounded-md bg-[#1B1B1B] border border-gray-700 text-white">
                           <SelectValue placeholder="Select condition" />
@@ -330,7 +330,7 @@ export const AddProductPage = () => {
 
                     {/* Price */}
                     <div className="space-y-2">
-                      <Label htmlFor="price">Price *</Label>
+                      <Label htmlFor="price" className="text-white">Price *</Label>
                       <div className="relative">
                         <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
                           ₹
@@ -357,7 +357,7 @@ export const AddProductPage = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Year of Manufacture */}
                     <div className="space-y-2">
-                      <Label htmlFor="year">Year of Manufacture</Label>
+                      <Label htmlFor="year" className="text-white">Year of Manufacture</Label>
                       <Input
                         id="year"
                         type="number"
@@ -372,7 +372,7 @@ export const AddProductPage = () => {
 
                     {/* Brand */}
                     <div className="space-y-2">
-                      <Label htmlFor="brand">Brand</Label>
+                      <Label htmlFor="brand" className="text-white">Brand</Label>
                       <Input
                         id="brand"
                         placeholder="Enter brand name"
@@ -384,7 +384,7 @@ export const AddProductPage = () => {
 
                     {/* Model */}
                     <div className="space-y-2">
-                      <Label htmlFor="model">Model</Label>
+                      <Label htmlFor="model" className="text-white">Model</Label>
                       <Input
                         id="model"
                         placeholder="Enter model name"
@@ -396,7 +396,7 @@ export const AddProductPage = () => {
 
                     {/* Dimensions */}
                     <div className="space-y-2">
-                      <Label htmlFor="dimensions">Dimensions</Label>
+                      <Label htmlFor="dimensions" className="text-white">Dimensions</Label>
                       <Input
                         id="dimensions"
                         placeholder="e.g., 12x8x4 cm"
@@ -408,7 +408,7 @@ export const AddProductPage = () => {
 
                     {/* Weight */}
                     <div className="space-y-2">
-                      <Label htmlFor="weight">Weight</Label>
+                      <Label htmlFor="weight" className="text-white">Weight</Label>
                       <Input
                         id="weight"
                         placeholder="e.g., 2.5 kg"
@@ -420,7 +420,7 @@ export const AddProductPage = () => {
 
                     {/* Material */}
                     <div className="space-y-2">
-                      <Label htmlFor="material">Material</Label>
+                      <Label htmlFor="material" className="text-white">Material</Label>
                       <Input
                         id="material"
                         placeholder="Enter material"
@@ -432,7 +432,7 @@ export const AddProductPage = () => {
 
                     {/* Color */}
                     <div className="space-y-2">
-                      <Label htmlFor="color">Color</Label>
+                      <Label htmlFor="color" className="text-white">Color</Label>
                       <Input
                         id="color"
                         placeholder="Enter color"
@@ -473,7 +473,7 @@ export const AddProductPage = () => {
 
                 {/* Description */}
                 <div className="space-y-2">
-                  <Label htmlFor="description">Description *</Label>
+                  <Label htmlFor="description" className="text-white">Description *</Label>
                   <Textarea
                     id="description"
                     placeholder="Describe your product..."
@@ -487,7 +487,7 @@ export const AddProductPage = () => {
 
                 {/* Working Condition Description */}
                 <div className="space-y-2">
-                  <Label htmlFor="workingCondition">Working Condition Description</Label>
+                  <Label htmlFor="workingCondition" className="text-white">Working Condition Description</Label>
                   <Textarea
                     id="workingCondition"
                     placeholder="Describe the working condition and any issues..."

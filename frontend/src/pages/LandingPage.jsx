@@ -10,11 +10,7 @@ const LandingPage = () => {
   const { user } = useAuth();
 
   const handleBrowseProducts = () => {
-    if (user) {
-      navigate('/products');
-    } else {
-      navigate('/auth');
-    }
+    navigate('/products');
   };
 
   return (
@@ -30,7 +26,7 @@ const LandingPage = () => {
                 <Button 
                   size="lg" 
                   onClick={handleBrowseProducts}
-                  className="text-lg px-10 py-7 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 border-0"
+                  className="text-lg px-10 py-7 bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 border-0 shadow-lg shadow-pink-500/50"
                 >
                   <Search className="mr-2 h-5 w-5" />
                   Browse Products
@@ -40,7 +36,7 @@ const LandingPage = () => {
                   size="lg" 
                   variant="outline" 
                   onClick={() => navigate('/auth')} 
-                  className="text-lg px-10 py-7 border-pink-500/50 hover:bg-pink-500/10"
+                  className="text-lg px-10 py-7 border-pink-500 hover:bg-pink-500/20 hover:border-red-500"
                 >
                   <User className="mr-2 h-5 w-5" />
                   Get Started
@@ -59,7 +55,7 @@ const LandingPage = () => {
         <div className="container mx-auto px-4 py-12">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-600 to-rose-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-red-500 flex items-center justify-center shadow-lg shadow-pink-500/50">
                 <Leaf className="w-6 h-6 text-white" />
               </div>
               <span className="text-2xl font-bold">EcoFinds</span>

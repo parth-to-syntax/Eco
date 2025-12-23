@@ -70,11 +70,7 @@ const App = () => (
                   <ProfilePage />
                 </ProtectedRoute>
               } />
-              <Route path="/product/:productId" element={
-                <ProtectedRoute>
-                  <ProductDetailPage />
-                </ProtectedRoute>
-              } />
+              <Route path="/product/:productId" element={<ProductDetailPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </DataProvider>
