@@ -12,6 +12,7 @@ import { MyListingsPage } from "./pages/MyListingsPage";
 import { CartPage } from "./pages/CartPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { ProductDetailPage } from "./pages/ProductDetailPage";
+import LandingPage from "./pages/LandingPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,8 +44,8 @@ const App = () => (
         <AuthProvider>
           <DataProvider>
             <Routes>
+              <Route path="/" element={<LandingPage />} />
               <Route path="/auth" element={<AuthPage />} />
-              <Route path="/" element={<Navigate to="/products" replace />} />
               <Route path="/products" element={
                 <ProtectedRoute>
                   <ProductsPage />
