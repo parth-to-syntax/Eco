@@ -56,7 +56,7 @@ export const DataProvider = ({ children }) => {
       setCategoriesError(null);
       try {
         const res = await api.get('/api/products/categories/list');
-        const serverCats[] = res.data?.categories || [];
+        const serverCats = res.data?.categories || [];
         setCategories(['All Categories', ...serverCats]);
       } catch (e) {
         setCategoriesError(e?.response?.data?.message || e.message || 'Failed to load categories');
