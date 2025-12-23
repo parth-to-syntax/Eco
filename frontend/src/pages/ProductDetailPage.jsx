@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header } from '@/components/Layout/Header';
 import { useData } from '@/contexts/DataContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -11,6 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 export const ProductDetailPage = () => {
   const { productId } = useParams();
   const { products, addToCart } = useData();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -31,6 +33,16 @@ export const ProductDetailPage = () => {
   }
 
   const handleAddToCart = () => {
+    if (!user) {
+      toast({
+        title: "Sign in Required",
+        description: "Please sign in to add items to your cart",
+        variant: "default",
+      });
+      setTimeout(() => navigate('/auth'), 1500);
+      return;
+    }
+    
     addToCart(product.id);
     toast({
       title: "Added to cart",
