@@ -18,8 +18,8 @@ export const ProfilePage = () => {
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   // Local optional profile fields not yet persisted on backend (phone, profileImage)
   const [editForm, setEditForm] = useState({
-    name: (user as any)?.name || '',
-    email: (user as any)?.email || '',
+    name: user?.name || '',
+    email: user?.email || '',
     phone: '',
     profileImage: ''
   });
@@ -51,7 +51,7 @@ export const ProfilePage = () => {
     setIsEditingProfile(false);
   };
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = (event) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -64,11 +64,11 @@ export const ProfilePage = () => {
     }
   };
 
-  const getPurchasedProducts = (purchase: any) => {
-    return purchase.items.map((item: any) => {
+  const getPurchasedProducts = (purchase) => {
+    return purchase.items.map((item) => {
       const product = products.find(p => p.id === item.productId);
       return { ...item, product };
-    }).filter((item: any) => item.product);
+    }).filter((item) => item.product);
   };
 
   return (
@@ -256,7 +256,7 @@ export const ProfilePage = () => {
                       </div>
                       
                       <div className="space-y-2">
-                        {getPurchasedProducts(purchase).map((item: any) => (
+                        {getPurchasedProducts(purchase).map((item) => (
                           <div key={item.productId} className="flex items-center space-x-3 p-2 rounded bg-muted/20">
                             <div className="w-12 h-12 bg-gradient-to-br from-muted/20 to-muted/40 rounded flex items-center justify-center flex-shrink-0">
                               <div className="text-xs text-muted-foreground">Img</div>

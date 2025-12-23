@@ -21,14 +21,14 @@ export const MyListingsPage = () => {
 
   const fetchUserProducts = React.useCallback(async () => {
     if (!user) return;
-    const sellerId = (user as any).id || (user as any)._id;
+    const sellerId = user?.id || user?._id;
     if (!sellerId) return; // avoid calling with undefined
     setLoading(true);
     setError(null);
     try {
       const res = await api.get(`/api/products?seller=${sellerId}`);
       setUserProducts(res.data || []);
-    } catch (e: any) {
+    } catch (e) {
       setError(e?.response?.data?.message || e.message || 'Failed to load listings');
     } finally {
       setLoading(false);
@@ -39,11 +39,11 @@ export const MyListingsPage = () => {
     fetchUserProducts();
   }, [fetchUserProducts]);
 
-  const handleEdit = (productId: string) => {
+  const handleEdit = (productId) => {
     navigate(`/add-product/${productId}`);
   };
 
-  const handleDelete = async (productId: string, productTitle: string) => {
+  const handleDelete = async (productId, productTitle) => {
     if (window.confirm(`Are you sure you want to delete "${productTitle}"?`)) {
       const ok = await deleteProduct(productId);
       if (ok) {

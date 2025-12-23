@@ -20,14 +20,14 @@ export const AuthPage = () => {
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [avatarFile, setAvatarFile] = useState(null);
   
-  const initialsFromName = (full: string) => {
+  const initialsFromName = (full) => {
     const parts = full.trim().split(/\s+/).filter(Boolean);
     if (!parts.length) return '';
     if (parts.length === 1) return parts[0].substring(0,2).toUpperCase();
     return (parts[0][0] + parts[parts.length-1][0]).toUpperCase();
   };
 
-  const generateInitialsDataUri = (full: string) => {
+  const generateInitialsDataUri = (full) => {
     const initials = initialsFromName(full) || '?';
     const bg = '#0ea5e9'; // Tailwind sky-500
     const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='256' height='256'>`+
@@ -43,7 +43,7 @@ export const AuthPage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!isLogin && password !== confirmPassword) {
@@ -108,7 +108,7 @@ export const AuthPage = () => {
         });
         navigate('/products');
       }
-    } catch (error: any) {
+    } catch (error) {
       if (import.meta.env.VITE_DEBUG === '1') {
         console.error('[AUTH_SUBMIT_ERROR]', error);
       }

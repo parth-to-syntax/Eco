@@ -2,81 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { api } from '@/api/client';
 import { useAuth } from '@/contexts/AuthContext';
 
-// Unified Product interface used by UI (adapts backend product shape)
-export interface Product {
-  id: string;                 // maps backend _id
-  ownerUserId: string;        // maps backend seller
-  sellerName?: string;
-  sellerAvatar?: string | null;
-  title: string;
-  description: string;
-  category: string;
-  price: number;
-  images: string[];           // built from backend 'image' field
-  quantity: number;           // placeholder (backend has no stock field)
-  condition?: string;         // backend uses lowercase values
-  tags?: string[];
-  createdAt?: string;
-  updatedAt?: string;
-  // Legacy optional fields retained for UI compatibility
-  yearOfManufacture?: number;
-  brand?: string;
-  model?: string;
-  dimensions?: string;
-  weight?: string;
-  material?: string;
-  color?: string;
-  originalPackaging?: boolean;
-  manualIncluded?: boolean;
-  workingConditionDescription?: string;
-}
-
-export interface CartItem {
-  productId: string;
-  quantity: number;
-}
-
-export interface Cart {
-  userId: string;
-  items: CartItem[];
-}
-
-export interface Purchase {
-  id: string;
-  userId: string;
-  items: CartItem[];
-  date: string;
-  total: number;
-  paymentMethod: 'pay_later' | 'razorpay';
-  paymentStatus: 'pending' | 'paid';
-}
-
-interface DataContextType {
-  products: Product[];
-  loadingProducts: boolean;
-  productsError: string | null;
-  cart: Cart | null;
-  loadingCart?: boolean;
-  cartError?: string | null;
-  purchases: Purchase[];
-  refreshProducts: () => Promise<void>;
-  addProduct: (product: { title: string; description: string; category: string; price: number; images?: string[]; image?: string; condition?: string; tags?: string[] }) => Promise<boolean>;
-  updateProduct: (id: string, updates: Partial<Product>) => Promise<boolean>;
-  deleteProduct: (id: string) => Promise<boolean>;
-  addToCart: (productId: string, quantity?: number) => void; // still local for now
-  removeFromCart: (productId: string) => void;
-  updateCartQuantity: (productId: string, quantity: number) => void;
-  clearCart: () => void;
-  checkout: (paymentMethod?: 'pay_later' | 'razorpay') => void;
-  getProductsByCategory: (category: string) => Product[];
-  searchProducts: (query: string) => Product[];
-  getUserProducts: (userId: string) => Product[];
-  categories: string[];
-  loadingCategories: boolean;
-  categoriesError: string | null;
-}
-
-const DataContext = createContext<DataContextType | undefined>(undefined);
+const DataContext = createContext(undefined);
 
 // Function declaration for stable React Fast Refresh boundary
 export function useData() {
@@ -130,7 +56,7 @@ export const DataProvider = ({ children }) => {
       setCategoriesError(null);
       try {
         const res = await api.get('/api/products/categories/list');
-        const serverCats: string[] = res.data?.categories || [];
+        const serverCats[] = res.data?.categories || [];
         setCategories(['All Categories', ...serverCats]);
       } catch (e: any) {
         setCategoriesError(e?.response?.data?.message || e.message || 'Failed to load categories');
@@ -223,7 +149,7 @@ export const DataProvider = ({ children }) => {
     }
   }, [authLoading, user]);
 
-  const addProduct = async (data: { title: string; description: string; category: string; price: number; images?: string[]; condition?: string; tags?: string[]; quantity?: number; details?: any; extras?: any; workingCondition?: string }) => {
+  const addProduct = async (data: { title: string; description: string; category: string; price: number; images?[]; condition?; tags?[]; quantity?; details?: any; extras?: any; workingCondition? }) => {
     try {
       const payload: any = {
         title: data.title,
@@ -261,7 +187,7 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  const updateProduct = async (id: string, updates: Partial<Product>) => {
+  const updateProduct = async (id, updates) => {
     try {
       const payload: any = { ...updates };
       if (updates.images) payload.images = updates.images;
@@ -274,7 +200,7 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  const deleteProduct = async (id: string) => {
+  const deleteProduct = async (id) => {
     try {
       await api.delete(`/api/products/${id}`);
       setProducts(prev => prev.filter(p => p.id !== id));
@@ -284,7 +210,7 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  const addToCart = async (productId: string, quantity: number = 1) => {
+  const addToCart = async (productId, quantity: number = 1) => {
     try {
       await api.post('/api/cart/add', { productId, quantity });
       fetchCart();
@@ -293,14 +219,14 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  const removeFromCart = async (productId: string) => {
+  const removeFromCart = async (productId) => {
     try {
       await api.delete(`/api/cart/remove/${productId}`);
       fetchCart();
     } catch (e) {}
   };
 
-  const updateCartQuantity = async (productId: string, quantity: number) => {
+  const updateCartQuantity = async (productId, quantity) => {
     if (!cart) return;
     const current = cart.items.find(i => i.productId === productId);
     if (!current) return;
@@ -341,19 +267,19 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  const getProductsByCategory = (category: string) => {
+  const getProductsByCategory = (category) => {
     if (category === 'All Categories') return products;
     return products.filter(product => product.category === category);
   };
 
-  const searchProducts = (query: string) => {
+  const searchProducts = (query) => {
     return products.filter(product =>
       product.title.toLowerCase().includes(query.toLowerCase()) ||
       product.description.toLowerCase().includes(query.toLowerCase())
     );
   };
 
-  const getUserProducts = (userId: string) => {
+  const getUserProducts = (userId) => {
     return products.filter(product => product.ownerUserId === userId);
   };
 

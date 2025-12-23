@@ -22,7 +22,7 @@ export const Header = () => {
     { label: 'Profile', path: '/profile' },
   ];
 
-  const handleNavigation = (path: string) => {
+  const handleNavigation = (path) => {
     navigate(path);
     setIsMobileMenuOpen(false);
   };

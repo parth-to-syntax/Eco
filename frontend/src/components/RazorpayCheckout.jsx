@@ -8,15 +8,6 @@ declare global {
   }
 }
 
-interface RazorpayCheckoutProps {
-  amount: number;
-  onSuccess: () => void;
-  onError?: (error: any) => void;
-  disabled?: boolean;
-  className?: string;
-  children?: React.ReactNode;
-}
-
 export const RazorpayCheckout = ({
   amount,
   onSuccess,
@@ -56,7 +47,7 @@ export const RazorpayCheckout = ({
       name: 'Thrift Earth',
       description: 'Purchase from Thrift Earth',
       image: '/favicon.ico',
-      handler: function (response: any) {
+      handler: function (response) {
         toast({
           title: "Payment Successful!",
           description: `Payment ID: ${response.razorpay_payment_id}`,

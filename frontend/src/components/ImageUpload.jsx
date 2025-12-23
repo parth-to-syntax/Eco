@@ -3,18 +3,12 @@ import { useDropzone } from 'react-dropzone';
 import { Upload, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-interface ImageUploadProps {
-  onImageUpload: (files: File[]) => void;
-  images: string[];
-  onRemoveImage: (index: number) => void;
-}
-
 export const ImageUpload = ({
   onImageUpload,
   images,
   onRemoveImage
 }) => {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
+  const onDrop = useCallback((acceptedFiles) => {
     onImageUpload(acceptedFiles);
   }, [onImageUpload]);
 

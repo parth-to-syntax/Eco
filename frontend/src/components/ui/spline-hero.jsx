@@ -1,9 +1,5 @@
 import React from 'react';
 
-interface SplineHeroProps {
-  className?: string;
-}
-
 export const SplineHero = ({ className = "" }) => {
   return (
     <div className={`relative w-full ${className}`}>

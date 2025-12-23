@@ -127,7 +127,7 @@ CommandItem.displayName = CommandPrimitive.Item.displayName
 const CommandShortcut = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLSpanElement>) => {
+}<HTMLSpanElement>) => {
   return (
     <span
       className={cn(

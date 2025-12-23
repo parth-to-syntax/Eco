@@ -1,31 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { api, setAuthToken } from '@/api/client';
 
-interface User {
-  id: string;
-  email: string;
-  name: string; // backend uses name
-  avatar?: string;
-  createdAt?: string;
-}
-
-interface AuthContextType {
-  user: User | null;
-  login: (email: string, password: string) => Promise<boolean>;
-  signup: (email: string, password: string, name: string, avatar?: string | null) => Promise<boolean>;
-  logout: () => void;
-  updateProfile: (updates: Partial<User>) => void;
-  isLoading: boolean;
-  lastError?: string | null;
-  debug?: {
-    token: string | null;
-    lastError: string | null;
-    lastAction: string | null;
-    requestLog: any[];
-  };
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext(undefined);
 
 // Exporting as a function declaration helps React Fast Refresh keep a stable boundary
 export function useAuth() {
@@ -42,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [lastError, setLastError] = useState(null);
   const [lastAction, setLastAction] = useState(null);
-  const lastActionRef = React.useRef<string | null>(null);
+  const lastActionRef = React.useRef(null);
 
   useEffect(() => {
     const stored = localStorage.getItem('ecofinds-auth');
@@ -73,7 +49,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = async (email: string, password: string): Promise<boolean> => {
+  const login = async (email, password) => {
     setIsLoading(true);
     try {
       lastActionRef.current = 'login';
@@ -92,7 +68,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signup = async (email: string, password: string, name: string, avatar?: string | null): Promise<boolean> => {
+  const signup = async (email, password, name, avatar? | null) => {
     setIsLoading(true);
     try {
       lastActionRef.current = 'register';
@@ -120,7 +96,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('ecofinds-auth');
   };
 
-  const updateProfile = async (updates: Partial<User>) => {
+  const updateProfile = async (updates) => {
     if (!user) return;
     try {
       lastActionRef.current = 'updateProfile';

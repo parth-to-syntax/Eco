@@ -11,7 +11,7 @@ export const api = axios.create({
 });
 
 // Helper to set/unset Bearer manually when storing token separately if needed
-export function setAuthToken(token?: string) {
+export function setAuthToken(token) {
   if (token) {
     api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   } else {
@@ -25,7 +25,7 @@ const DEBUG = import.meta.env.VITE_DEBUG === '1';
 if (DEBUG) {
   // Track a rolling log in window for quick inspection
   (window as any).__AXIOS_LOG__ = (window as any).__AXIOS_LOG__ || [];
-  const pushLog = (entry: any) => {
+  const pushLog = (entry) => {
     (window as any).__AXIOS_LOG__.push(entry);
     if ((window as any).__AXIOS_LOG__.length > 100) (window as any).__AXIOS_LOG__.shift();
   };
@@ -55,7 +55,7 @@ if (DEBUG) {
       pushLog(logEntry);
       return response;
     },
-    (error: AxiosError) => {
+    (error) => {
       const logEntry = {
         type: 'error',
         url: error.config ? (error.config.baseURL || '') + (error.config.url || '') : undefined,

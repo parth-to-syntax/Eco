@@ -19,7 +19,7 @@ const ContextMenuRadioGroup = ContextMenuPrimitive.RadioGroup
 const ContextMenuSubTrigger = React.forwardRef<
   React.ElementRef
   React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.SubTrigger> & {
-    inset?: boolean
+    inset?
   }
 >(({ className, inset, children, ...props }, ref) => (
   <ContextMenuPrimitive.SubTrigger
@@ -72,7 +72,7 @@ ContextMenuContent.displayName = ContextMenuPrimitive.Content.displayName
 const ContextMenuItem = React.forwardRef<
   React.ElementRef
   React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Item> & {
-    inset?: boolean
+    inset?
   }
 >(({ className, inset, ...props }, ref) => (
   <ContextMenuPrimitive.Item
@@ -136,7 +136,7 @@ ContextMenuRadioItem.displayName = ContextMenuPrimitive.RadioItem.displayName
 const ContextMenuLabel = React.forwardRef<
   React.ElementRef
   React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Label> & {
-    inset?: boolean
+    inset?
   }
 >(({ className, inset, ...props }, ref) => (
   <ContextMenuPrimitive.Label
@@ -166,7 +166,7 @@ ContextMenuSeparator.displayName = ContextMenuPrimitive.Separator.displayName
 const ContextMenuShortcut = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLSpanElement>) => {
+}<HTMLSpanElement>) => {
   return (
     <span
       className={cn(

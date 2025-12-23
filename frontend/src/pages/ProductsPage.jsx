@@ -59,7 +59,7 @@ export const ProductsPage = () => {
 
     if (groupBy === 'category') {
       // Group into sections by category; return array with marker objects
-      const groups = new Map<string, typeof filtered>();
+      const groups = new Map();
       for (const p of filtered) {
         const key = p.category || 'Uncategorized';
         if (!groups.has(key)) groups.set(key, []);
@@ -76,7 +76,7 @@ export const ProductsPage = () => {
     return filtered;
   }, [products, selectedCategory, searchQuery, user, sortMode, groupBy]);
 
-  const handleAddToCart = (productId: string, e: React.MouseEvent) => {
+  const handleAddToCart = (productId, e) => {
     e.stopPropagation();
     addToCart(productId);
     toast({
@@ -86,7 +86,7 @@ export const ProductsPage = () => {
     });
   };
 
-  const handleProductClick = (productId: string) => {
+  const handleProductClick = (productId) => {
     navigate(`/product/${productId}`);
   };
 
@@ -217,7 +217,7 @@ export const ProductsPage = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {processedProducts.map((product: any, index: number) => (
+            {processedProducts.map((product: any, index) => (
               product.__group ? (
                 <div key={`group-${product.category}-${index}`} className="col-span-full mt-8 mb-2">
                   <div className="flex items-center justify-between">

@@ -66,7 +66,7 @@ export const AddProductPage = () => {
     }
   }, [isEdit, productId, products]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!user) {
@@ -196,7 +196,7 @@ export const AddProductPage = () => {
     }
   };
 
-  const handleImageUpload = (files: File[]) => {
+  const handleImageUpload = (files) => {
     // Convert files to URLs for preview (in real app, upload to cloud storage)
     files.forEach(file => {
       const reader = new FileReader();
@@ -209,7 +209,7 @@ export const AddProductPage = () => {
     });
   };
 
-  const handleRemoveImage = (index: number) => {
+  const handleRemoveImage = (index) => {
     setImages(prev => prev.filter((_, i) => i !== index));
   };
 
