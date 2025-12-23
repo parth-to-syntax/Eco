@@ -85,10 +85,10 @@ export const DataProvider = ({ children }) => {
 
   // When user state changes (e.g., after login) refresh to exclude their listings from marketplace
   useEffect(() => {
-    if (user) {
+    if (!authLoading && user) {
       refreshProducts();
     }
-  }, [user]);
+  }, [user, authLoading]);
 
   // Legacy cart/purchase from localStorage kept (can migrate later)
   // Legacy local cart fallback (first load) - will be overwritten by server fetch

@@ -61,13 +61,13 @@ export const Header = () => {
               <button
                 key={item.path}
                 onClick={() => handleNavigation(item.path)}
-                className={`text-sm font-medium transition-colors hover:text-[#00BFFF] relative ${
-                  location.pathname === item.path ? 'text-[#00BFFF]' : 'text-gray-300'
+                className={`text-sm font-medium transition-colors hover:text-red-500 relative ${
+                  location.pathname === item.path ? 'text-red-500' : 'text-gray-300'
                 }`}
               >
                 {item.label}
                 {item.label === 'Cart' && cartItemCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-[#00BFFF] text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                     {cartItemCount}
                   </span>
                 )}
@@ -78,7 +78,7 @@ export const Header = () => {
               <>
                 {/* Profile Avatar */}
                 <div
-                  className="w-10 h-10 rounded-full overflow-hidden border border-gray-600 hover:ring-2 hover:ring-[#00BFFF] cursor-pointer transition-all"
+                  className="w-10 h-10 rounded-full overflow-hidden border border-gray-600 hover:ring-2 hover:ring-red-500 cursor-pointer transition-all"
                   onClick={() => handleNavigation('/profile')}
                 >
                   {user?.profileImage || user?.avatar ? (
@@ -88,7 +88,7 @@ export const Header = () => {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-[#00BFFF] to-[#00B894] flex items-center justify-center">
+                    <div className="w-full h-full bg-gradient-to-br from-red-500 to-pink-500 flex items-center justify-center">
                       <User className="h-5 w-5 text-white" />
                     </div>
                   )}
@@ -106,7 +106,7 @@ export const Header = () => {
             ) : (
               <Button
                 onClick={() => handleNavigation('/auth')}
-                className="bg-[#00BFFF] hover:bg-[#00BFFF]/90 text-white"
+                className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-pink-500 hover:to-red-500 text-white"
               >
                 Sign In
               </Button>
@@ -143,7 +143,7 @@ export const Header = () => {
                   onClick={() => handleNavigation(item.path)}
                   className={`w-full text-left p-3 rounded-lg transition-colors flex items-center justify-between ${
                     location.pathname === item.path
-                      ? 'bg-[#00BFFF] text-white'
+                      ? 'bg-red-500 text-white'
                       : 'hover:bg-gray-800 text-gray-300'
                   }`}
                 >
@@ -167,7 +167,7 @@ export const Header = () => {
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-[#00BFFF] to-[#00B894] flex items-center justify-center">
+                        <div className="w-full h-full bg-gradient-to-br from-red-500 to-pink-500 flex items-center justify-center">
                           <User className="h-5 w-5 text-white" />
                         </div>
                       )}
@@ -188,7 +188,7 @@ export const Header = () => {
               ) : (
                 <div className="pt-4 border-t border-gray-700">
                   <Button
-                    className="w-full bg-[#00BFFF] hover:bg-[#00BFFF]/90 text-white"
+                    className="w-full bg-gradient-to-r from-red-500 to-pink-500 hover:from-pink-500 hover:to-red-500 text-white"
                     onClick={() => handleNavigation('/auth')}
                   >
                     Sign In
