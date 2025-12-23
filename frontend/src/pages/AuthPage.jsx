@@ -67,18 +67,18 @@ export const AuthPage = () => {
         success = await login(normalizedEmail, password);
         if (!success) {
           const errorMsg = lastError || "Invalid email or password";
-          const isWrongPassword = errorMsg.toLowerCase().includes('password') || errorMsg.toLowerCase().includes('incorrect');
-          const isUserNotFound = errorMsg.toLowerCase().includes('not found') || errorMsg.toLowerCase().includes('no user');
+          const isWrongPassword = errorMsg.toLowerCase().includes('incorrect password') || errorMsg.toLowerCase().includes('wrong password') || errorMsg.includes('WRONG_PASSWORD');
+          const isUserNotFound = errorMsg.toLowerCase().includes('user not found') || errorMsg.toLowerCase().includes('not found') || errorMsg.includes('USER_NOT_FOUND');
           
           toast({
-            title: isWrongPassword ? "❌ Wrong Password" : isUserNotFound ? "❌ Account Not Found" : "🚫 Login Failed",
+            title: isWrongPassword ? "🔒 Wrong Password" : isUserNotFound ? "👤 Account Not Found" : "⚠️ Login Failed",
             description: isWrongPassword ? 
               "The password you entered is incorrect. Please try again or reset your password." :
               isUserNotFound ?
               "No account found with this email. Please check your email or register for a new account." :
               "Invalid email or password. Please check your credentials and try again.",
             variant: "destructive",
-            duration: 5000
+            duration: 3000
           });
           return;
         }

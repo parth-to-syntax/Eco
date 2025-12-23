@@ -244,59 +244,60 @@ export const ProductsPage = () => {
               ) : (
               <Card
                 key={product.id}
-                className="group cursor-pointer overflow-hidden bg-[#1B1B1B]/80 backdrop-blur-sm border border-gray-700 hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="group cursor-pointer overflow-hidden bg-[#1B1B1B]/90 backdrop-blur-sm border border-gray-700 hover:shadow-xl hover:shadow-red-500/30 transition-all duration-300 hover:-translate-y-2 hover:border-red-500/50 animate-fade-in flex flex-col h-full"
+                style={{ animationDelay: `${index * 50}ms` }}
                 onClick={() => handleProductClick(product.id)}
               >
-                <CardContent className="p-0">
+                <CardContent className="p-0 flex flex-col h-full">
                   {/* Product Image */}
-                  <div className="relative h-48 bg-gradient-to-br from-muted/20 to-muted/40 flex items-center justify-center overflow-hidden">
+                  <div className="relative h-56 bg-gradient-to-br from-gray-800/40 to-gray-900/60 flex items-center justify-center overflow-hidden">
                     {product.images && product.images.length > 0 ? (
                       <img
                         src={product.images[0]}
                         alt={product.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     ) : (
-                      <div className="text-muted-foreground text-sm">Product Image</div>
+                      <div className="text-muted-foreground text-sm font-light">No Image Available</div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   
                   {/* Product Info */}
-                  <div className="p-4 space-y-3">
-                    <div className="flex items-start justify-between">
-                      <h3 className="font-medium line-clamp-2 text-sm text-white">{product.title}</h3>
-                      <div className="flex flex-col gap-1 ml-2 shrink-0">
-                        <Badge variant="secondary" className="text-xs">
-                          {product.category}
-                        </Badge>
-                        {product.brand && (
-                          <Badge variant="outline" className="text-xs border-gray-600 text-gray-300">
-                            {product.brand}
-                          </Badge>
-                        )}
-                      </div>
+                  <div className="p-5 space-y-3 flex flex-col flex-grow">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="font-semibold line-clamp-2 text-base text-white leading-tight flex-grow">{product.title}</h3>
+                      <Badge variant="secondary" className="text-xs shrink-0 bg-red-500/20 text-red-400 border-red-500/30">
+                        {product.category}
+                      </Badge>
                     </div>
                     
-                    <div className="flex items-center gap-2 text-xs text-gray-400">
-                      <span>Qty: {product.quantity}</span>
+                    <div className="flex items-center gap-3 text-xs text-gray-400">
+                      <span className="flex items-center gap-1">
+                        <span className="font-medium text-gray-300">Qty:</span> {product.quantity}
+                      </span>
                       <span>•</span>
-                      <span className="capitalize">{product.condition}</span>
+                      <span className="capitalize font-medium">{product.condition}</span>
+                      {product.brand && (
+                        <>
+                          <span>•</span>
+                          <span className="font-medium text-gray-300">{product.brand}</span>
+                        </>
+                      )}
                     </div>
                     
-                    <p className="text-gray-300 text-sm line-clamp-2">
+                    <p className="text-gray-400 text-sm line-clamp-2 leading-relaxed flex-grow">
                       {product.description}
                     </p>
                     
-                    <div className="flex items-center justify-between">
-                      <span className="text-lg font-semibold text-[#00BFFF]">
+                    <div className="flex items-center justify-between pt-2 border-t border-gray-700/50 mt-auto">
+                      <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                         ₹{product.price.toFixed(2)}
                       </span>
                       <Button
                         size="sm"
                         onClick={(e) => handleAddToCart(product.id, e)}
-                        className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-pink-500 hover:to-red-500 text-white shadow-lg shadow-red-500/30"
+                        className="bg-gradient-to-r from-red-500 via-pink-500 to-rose-500 hover:from-red-600 hover:via-pink-600 hover:to-rose-600 text-white shadow-lg shadow-red-500/40 hover:shadow-red-500/60 transition-all duration-300 font-medium"
                       >
                         Add to Cart
                       </Button>

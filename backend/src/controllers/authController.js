@@ -86,13 +86,13 @@ export async function login(req, res) {
   const user = await User.findOne({ email: normalizedEmail });
   if (!user) {
     console.warn('[LOGIN_FAIL_NO_USER]', { email: normalizedEmail });
-    return res.status(401).json({ message: 'Invalid email or password' });
+    return res.status(401).json({ message: 'User not found. Please check your email or register for a new account.', code: 'USER_NOT_FOUND' });
   }
   
   const match = await user.matchPassword(password);
   if (!match) {
     console.warn('[LOGIN_FAIL_BAD_PASSWORD]', { userId: user._id });
-    return res.status(401).json({ message: 'Invalid email or password' });
+    return res.status(401).json({ message: 'Incorrect password. Please try again or reset your password.', code: 'WRONG_PASSWORD' });
   }
   
   console.log('[LOGIN_SUCCESS]', { userId: user._id, email: user.email });

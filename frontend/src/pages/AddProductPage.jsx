@@ -113,9 +113,9 @@ export const AddProductPage = () => {
 
     if (yearNumber && (yearNumber < 1900 || yearNumber > new Date().getFullYear())) {
       toast({
-        title: \"📅 Invalid Year\",
+        title: "\ud83d\udcc5 Invalid Year",
         description: `Please enter a valid year between 1900 and ${new Date().getFullYear()}.`,
-        variant: \"destructive\",
+        variant: "destructive",
         duration: 4000,
       });
       return;
