@@ -77,7 +77,7 @@ export const AuthPage = () => {
         if (avatarFile) {
           avatarToSend = await new Promise<string | null>((resolve) => {
             const reader = new FileReader();
-            reader.onload = () => resolve(reader.result as string);
+            reader.onload = () => resolve(reader.result);
             reader.onerror = () => resolve(null);
             reader.readAsDataURL(avatarFile);
           });
@@ -215,7 +215,7 @@ export const AuthPage = () => {
                         if (file) {
                           setAvatarFile(file);
                           const reader = new FileReader();
-                          reader.onload = () => setAvatarPreview(reader.result as string);
+                          reader.onload = () => setAvatarPreview(reader.result);
                           reader.readAsDataURL(file);
                         } else {
                           setAvatarFile(null);

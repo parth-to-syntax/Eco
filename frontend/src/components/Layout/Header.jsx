@@ -157,9 +157,9 @@ export const Header = () => {
               <div className="pt-4 border-t border-gray-700">
                 <div className="flex items-center space-x-3 p-3 rounded-lg bg-gray-800/50">
                   <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-600">
-                    {(user as any)?.profileImage || user?.avatar ? (
+                    {user?.profileImage || user?.avatar ? 
                       <img
-                        src={(user as any)?.profileImage || (user as any).avatar}
+                        src={(user?.profileImage || user.avatar}
                         alt="Profile"
                         className="w-full h-full object-cover"
                       />
@@ -170,7 +170,7 @@ export const Header = () => {
                     )}
                   </div>
                   <div>
-                    <p className="font-medium text-white">{(user as any)?.name}</p>
+                    <p className="font-medium text-white">{user?.name}</p>
                     <p className="text-sm text-gray-400">{user?.email}</p>
                   </div>
                 </div>

@@ -151,7 +151,7 @@ export const ProductsPage = () => {
               <span className="text-gray-400">Sort:</span>
               <select
                 value={sortMode}
-                onChange={(e) => setSortMode(e.target.value as any)}
+                onChange={(e) => setSortModee.target.value}
                 className="bg-[#1B1B1B]/50 border border-gray-700 rounded px-2 py-1 text-gray-200 text-sm focus:outline-none focus:border-[#00BFFF]"
               >
                 <option value="newest">Newest</option>
@@ -164,7 +164,7 @@ export const ProductsPage = () => {
               <span className="text-gray-400">Group:</span>
               <select
                 value={groupBy}
-                onChange={(e) => setGroupBy(e.target.value as any)}
+                onChange={(e) => setGroupBye.target.value}
                 className="bg-[#1B1B1B]/50 border border-gray-700 rounded px-2 py-1 text-gray-200 text-sm focus:outline-none focus:border-[#00BFFF]"
               >
                 <option value="none">None</option>
@@ -217,7 +217,7 @@ export const ProductsPage = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {processedProducts.map((product: any, index) => (
+            {processedProducts.map((product, index) => (
               product.__group ? (
                 <div key={`group-${product.category}-${index}`} className="col-span-full mt-8 mb-2">
                   <div className="flex items-center justify-between">

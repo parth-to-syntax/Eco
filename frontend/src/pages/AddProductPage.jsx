@@ -127,7 +127,7 @@ export const AddProductPage = () => {
           price: priceNumber,
           images,
           quantity: quantityNumber,
-          condition: condition as any,
+          condition: condition,
           yearOfManufacture: yearNumber,
           brand: brand.trim() || undefined,
           model: model.trim() || undefined,
@@ -155,7 +155,7 @@ export const AddProductPage = () => {
           category,
           price: priceNumber,
           images: images && images.length ? images : undefined,
-          condition: condition as any,
+          condition: condition,
           quantity: quantityNumber,
           details: {
             yearOfManufacture: yearNumber,
@@ -171,7 +171,7 @@ export const AddProductPage = () => {
             manualIncluded,
           },
           workingCondition: workingConditionDescription.trim() || undefined,
-        } as any);
+        });
         if (!ok) {
           toast({
             title: 'Error',
@@ -202,7 +202,7 @@ export const AddProductPage = () => {
       const reader = new FileReader();
       reader.onload = (e) => {
         if (e.target?.result) {
-          setImages(prev => [...prev, e.target.result as string]);
+          setImages(prev => [...prev, e.target.result]);
         }
       };
       reader.readAsDataURL(file);
@@ -452,7 +452,7 @@ export const AddProductPage = () => {
                       <Checkbox
                         id="packaging"
                         checked={originalPackaging}
-                        onCheckedChange={(checked) => setOriginalPackaging(checked as boolean)}
+                        onCheckedChange={(checked) => setOriginalPackaging(checked)}
                       />
                       <Label htmlFor="packaging" className="text-sm font-normal">
                         Original Packaging Included
@@ -462,7 +462,7 @@ export const AddProductPage = () => {
                       <Checkbox
                         id="manual"
                         checked={manualIncluded}
-                        onCheckedChange={(checked) => setManualIncluded(checked as boolean)}
+                        onCheckedChange={(checked) => setManualIncluded(checked)}
                       />
                       <Label htmlFor="manual" className="text-sm font-normal">
                         Manual/Instructions Included

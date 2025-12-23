@@ -24,7 +24,7 @@ export const ProfilePage = () => {
     profileImage: ''
   });
 
-  const userPurchases = purchases.filter(purchase => purchase.userId === ((user as any)?.id || (user as any)?._id));
+  const userPurchases = purchases.filterpurchase => purchase.userId === ((user?.id || user?._id));
 
   const handleSaveProfile = () => {
     if (editForm.username.trim() && editForm.email.trim()) {
@@ -32,7 +32,7 @@ export const ProfilePage = () => {
         name: editForm.name.trim(),
         email: editForm.email.trim()
         // phone/profileImage are only client-side placeholders for now
-      } as any);
+      });
       toast({
         title: "Success",
         description: "Profile updated successfully",
@@ -42,9 +42,9 @@ export const ProfilePage = () => {
   };
 
   const handleCancelEdit = () => {
-    setEditForm({
-      name: (user as any)?.name || '',
-      email: (user as any)?.email || '',
+    setEditForm{
+      name: (user?.name || '',
+      email: user?.email || '',
       phone: '',
       profileImage: ''
     });
@@ -57,7 +57,7 @@ export const ProfilePage = () => {
       const reader = new FileReader();
       reader.onload = (e) => {
         if (e.target?.result) {
-          setEditForm(prev => ({ ...prev, profileImage: e.target.result as string }));
+          setEditForm(prev => ({ ...prev, profileImage: e.target.result }));
         }
       };
       reader.readAsDataURL(file);
@@ -174,12 +174,12 @@ export const ProfilePage = () => {
                         </Button>
                       </div>
                     </div>
-                  ) : (
+                  ) : 
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
                         <User className="h-4 w-4 text-muted-foreground" />
                         <span className="text-muted-foreground">Name:</span>
-                        <span className="font-medium">{(user as any)?.name}</span>
+                        <span className="font-medium">{(user?.name}</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <Mail className="h-4 w-4 text-muted-foreground" />

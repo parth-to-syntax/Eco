@@ -1,4 +1,4 @@
-import * as React from "react"
+import * from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { VariantProps, cva } from "class-variance-authority"
 import { PanelLeft } from "lucide-react"
@@ -78,7 +78,7 @@ const SIDEBAR_KEYBOARD_SHORTCUT = "b"
                 "--sidebar-width": SIDEBAR_WIDTH,
                 "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
                 ...style,
-              } as React.CSSProperties
+              }.CSSProperties
             }
             className={cn(
               "group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar",
@@ -142,7 +142,7 @@ const Sidebar = React.forwardRef<
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
-              } as React.CSSProperties
+              }.CSSProperties
             }
             side={side}
           >
@@ -614,7 +614,7 @@ const SidebarMenuSkeleton = React.forwardRef<
         style={
           {
             "--skeleton-width": width,
-          } as React.CSSProperties
+          }.CSSProperties
         }
       />
     </div>

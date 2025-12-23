@@ -1,5 +1,5 @@
-import * as React from "react"
-import * as RechartsPrimitive from "recharts"
+import * from "react"
+import * from "recharts"
 
 import { cn } from "@/lib/utils"
 
@@ -30,7 +30,7 @@ ${prefix} [data-chart=${id}] {
 ${colorConfig
   .map(([key, itemConfig]) => {
     const color =
-      itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
+      itemConfig.theme?.[theme typeof itemConfig.theme] ||
       itemConfig.color
     return color ? `  --color-${key}: ${color};` : null
   })
@@ -87,7 +87,7 @@ const ChartTooltipContent = React.forwardRef<
       const itemConfig = getPayloadConfigFromPayload(config, item, key)
       const value =
         !labelKey && typeof label === "string"
-          ? config[label as keyof typeof config]?.label || label
+          ? config[label typeof config]?.label || label
           : itemConfig?.label
 
       if (labelFormatter) {
@@ -165,7 +165,7 @@ const ChartTooltipContent = React.forwardRef<
                             {
                               "--color-bg": indicatorColor,
                               "--color-border": indicatorColor,
-                            } as React.CSSProperties
+                            }.CSSProperties
                           }
                         />
                       )
@@ -281,22 +281,22 @@ function getPayloadConfigFromPayload(
 
   if (
     key in payload &&
-    typeof payload[key as keyof typeof payload] === "string"
+    typeof payload[key typeof payload] === "string"
   ) {
-    configLabelKey = payload[key as keyof typeof payload] as string
+    configLabelKey = payload[key typeof payload]
   } else if (
     payloadPayload &&
     key in payloadPayload &&
-    typeof payloadPayload[key as keyof typeof payloadPayload] === "string"
+    typeof payloadPayload[key typeof payloadPayload] === "string"
   ) {
     configLabelKey = payloadPayload[
-      key as keyof typeof payloadPayload
-    ] as string
+      key typeof payloadPayload
+    ]
   }
 
   return configLabelKey in config
     ? config[configLabelKey]
-    : config[key as keyof typeof config]
+    : config[key typeof config]
 }
 
 export {

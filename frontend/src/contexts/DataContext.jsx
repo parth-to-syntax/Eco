@@ -31,7 +31,7 @@ export const DataProvider = ({ children }) => {
   const { user, isLoading: authLoading } = useAuth();
 
   // Fetch products from backend
-  const mapBackendProduct = (p: any): Product => ({
+  const mapBackendProduct = (p): Product => ({
     id: p._id,
     ownerUserId: (typeof p.seller === 'object' && p.seller?._id) ? p.seller._id : (p.seller || ''),
     sellerName: (typeof p.seller === 'object' && p.seller?.name) ? p.seller.name : undefined,
@@ -66,8 +66,8 @@ export const DataProvider = ({ children }) => {
     };
     try {
       const params: any = {};
-      // Ask backend to exclude this user's products (server-side filtering) – still filtered client-side as fallback
-      if (user) params.excludeSeller = (user as any).id || (user as any)._id;
+      // Ask backend to exclude this user's products (server-side filtering) – still filtered client-side
+      if (user) params.excludeSeller = user.id || user._id;
       const res = await api.get('/api/products', { params });
       const list = Array.isArray(res.data) ? res.data : [];
       refreshCategories();
@@ -104,10 +104,10 @@ export const DataProvider = ({ children }) => {
     try {
       const res = await api.get('/api/orders/history');
       const orders = res.data?.orders || [];
-      const mapped: Purchase[] = orders.map((o: any) => ({
+      const mapped: Purchase[] = orders.map((o) => ({
         id: o._id,
         userId: o.user,
-        items: o.items.map((it: any) => ({ productId: it.product?._id || it.product, quantity: it.quantity })),
+        items: o.items.map((it) => ({ productId: it.product?._id || it.product, quantity: it.quantity })),
         date: o.createdAt,
         total: o.total,
         paymentMethod: o.paymentMethod || 'razorpay',
@@ -129,8 +129,8 @@ export const DataProvider = ({ children }) => {
       const res = await api.get('/api/cart');
       const serverCart = res.data?.cart || [];
       const mapped: Cart = {
-        userId: (user as any).id || (user as any)._id,
-        items: serverCart.map((c: any) => ({ productId: c.product?._id || c.product, quantity: c.quantity }))
+        userId: user.id || user._id,
+        items: serverCart.map((c) => ({ productId: c.product?._id || c.product, quantity: c.quantity }))
       };
       setCart(mapped);
       localStorage.setItem('thrift-earth-cart', JSON.stringify(mapped));

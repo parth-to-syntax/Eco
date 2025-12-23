@@ -118,7 +118,7 @@ export const MyListingsPage = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-6">
-            {userProducts.map((product: any, index) => (
+            {userProducts.map((product, index) => (
               <Card
                 key={product._id || product.id}
                 className="group overflow-hidden bg-[#1B1B1B]/80 backdrop-blur-sm border border-gray-700 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 animate-fade-in cursor-pointer"

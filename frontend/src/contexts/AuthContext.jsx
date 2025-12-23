@@ -3,7 +3,7 @@ import { api, setAuthToken } from '@/api/client';
 
 const AuthContext = createContext(undefined);
 
-// Exporting as a function declaration helps React Fast Refresh keep a stable boundary
+// Exporting function declaration helps React Fast Refresh keep a stable boundary
 export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {
@@ -127,7 +127,7 @@ export const AuthProvider = ({ children }) => {
         token,
         lastError,
         lastAction,
-        requestLog: (window as any).__AXIOS_LOG__ || []
+        requestLog: window.__AXIOS_LOG__ || []
       } : undefined
     }}>
       {children}

@@ -1,5 +1,5 @@
-import * as React from "react"
-import * as LabelPrimitive from "@radix-ui/react-label"
+import * from "react"
+import * from "@radix-ui/react-label"
 import { Slot } from "@radix-ui/react-slot"
 import {
   Controller,
@@ -23,7 +23,7 @@ type FormFieldContextValue<
 }
 
 const FormFieldContext = React.createContext<FormFieldContextValue>(
-  {} as FormFieldContextValue
+  {}
 )
 
 const FormField = <
@@ -67,7 +67,7 @@ type FormItemContextValue = {
 }
 
 const FormItemContext = React.createContext<FormItemContextValue>(
-  {} as FormItemContextValue
+  {}
 )
 
 const FormItem = React.forwardRef<

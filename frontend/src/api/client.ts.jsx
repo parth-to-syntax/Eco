@@ -24,10 +24,10 @@ const DEBUG = import.meta.env.VITE_DEBUG === '1';
 
 if (DEBUG) {
   // Track a rolling log in window for quick inspection
-  (window as any).__AXIOS_LOG__ = (window as any).__AXIOS_LOG__ || [];
+  window.__AXIOS_LOG__ = window.__AXIOS_LOG__ || [];
   const pushLog = (entry) => {
-    (window as any).__AXIOS_LOG__.push(entry);
-    if ((window as any).__AXIOS_LOG__.length > 100) (window as any).__AXIOS_LOG__.shift();
+    window.__AXIOS_LOG__.push(entry);
+    if (window.__AXIOS_LOG__.length > 100) window.__AXIOS_LOG__.shift();
   };
   api.interceptors.request.use((config) => {
     const logEntry = {
