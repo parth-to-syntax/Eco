@@ -65,7 +65,7 @@ export const DataProvider = ({ children }) => {
       }
     };
     try {
-      const params: any = {};
+      const params = {};
       // Ask backend to exclude this user's products (server-side filtering) – still filtered client-side
       if (user) params.excludeSeller = user.id || user._id;
       const res = await api.get('/api/products', { params });

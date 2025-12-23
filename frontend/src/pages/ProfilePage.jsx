@@ -174,7 +174,7 @@ export const ProfilePage = () => {
                         </Button>
                       </div>
                     </div>
-                  ) : 
+                  ) : (
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
                         <User className="h-4 w-4 text-muted-foreground" />
