@@ -149,9 +149,9 @@ export const DataProvider = ({ children }) => {
     }
   }, [authLoading, user]);
 
-  const addProduct = async (data: { title: string; description: string; category: string; price: number; images?[]; condition?; tags?[]; quantity?; details?: any; extras?) => {
+  const addProduct = async (data) => {
     try {
-      const payload: any = {
+      const payload = {
         title: data.title,
         description: data.description,
         category: data.category,

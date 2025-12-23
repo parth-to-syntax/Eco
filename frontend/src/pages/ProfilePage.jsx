@@ -24,7 +24,7 @@ export const ProfilePage = () => {
     profileImage: ''
   });
 
-  const userPurchases = purchases.filterpurchase => purchase.userId === ((user?.id || user?._id));
+  const userPurchases = purchases.filter(purchase => purchase.userId === (user?.id || user?._id));
 
   const handleSaveProfile = () => {
     if (editForm.username.trim() && editForm.email.trim()) {
