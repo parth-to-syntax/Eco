@@ -1,5 +1,5 @@
-import * from "react"
-import * from "@radix-ui/react-label"
+import * as React from "react"
+import * as RadixUI from "@radix-ui/react-label"
 import { Slot } from "@radix-ui/react-slot"
 import {
   Controller,

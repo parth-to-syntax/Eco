@@ -31,7 +31,7 @@ export const DataProvider = ({ children }) => {
   const { user, isLoading: authLoading } = useAuth();
 
   // Fetch products from backend
-  const mapBackendProduct = (p): Product => ({
+  const mapBackendProduct = (p) => ({
     id: p._id,
     ownerUserId: (typeof p.seller === 'object' && p.seller?._id) ? p.seller._id : (p.seller || ''),
     sellerName: (typeof p.seller === 'object' && p.seller?.name) ? p.seller.name : undefined,

@@ -159,7 +159,7 @@ export const Header = () => {
                   <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-600">
                     {user?.profileImage || user?.avatar ? 
                       <img
-                        src={(user?.profileImage || user.avatar}
+                        src={user?.profileImage || user?.avatar}
                         alt="Profile"
                         className="w-full h-full object-cover"
                       />

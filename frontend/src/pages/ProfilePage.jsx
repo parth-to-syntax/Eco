@@ -42,8 +42,8 @@ export const ProfilePage = () => {
   };
 
   const handleCancelEdit = () => {
-    setEditForm{
-      name: (user?.name || '',
+    setEditForm({
+      name: user?.name || '',
       email: user?.email || '',
       phone: '',
       profileImage: ''
