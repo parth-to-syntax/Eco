@@ -58,7 +58,7 @@ export const DataProvider = ({ children }) => {
         const res = await api.get('/api/products/categories/list');
         const serverCats[] = res.data?.categories || [];
         setCategories(['All Categories', ...serverCats]);
-      } catch (e: any) {
+      } catch (e) {
         setCategoriesError(e?.response?.data?.message || e.message || 'Failed to load categories');
       } finally {
         setLoadingCategories(false);
@@ -72,7 +72,7 @@ export const DataProvider = ({ children }) => {
       const list = Array.isArray(res.data) ? res.data : [];
       refreshCategories();
       setProducts(list.map(mapBackendProduct));
-    } catch (e: any) {
+    } catch (e) {
       setProductsError(e?.response?.data?.message || e.message || 'Failed to load products');
     } finally {
       setLoadingProducts(false);
@@ -114,7 +114,7 @@ export const DataProvider = ({ children }) => {
         paymentStatus: o.paymentStatus || 'paid'
       }));
       setPurchases(mapped);
-    } catch (e: any) {
+    } catch (e) {
       setPurchasesError(e?.response?.data?.message || e.message || 'Failed to load purchase history');
     } finally {
       setLoadingPurchases(false);
@@ -134,7 +134,7 @@ export const DataProvider = ({ children }) => {
       };
       setCart(mapped);
       localStorage.setItem('thrift-earth-cart', JSON.stringify(mapped));
-    } catch (e: any) {
+    } catch (e) {
       setCartError(e?.response?.data?.message || e.message || 'Failed to load cart');
     } finally {
       setLoadingCart(false);
@@ -149,7 +149,7 @@ export const DataProvider = ({ children }) => {
     }
   }, [authLoading, user]);
 
-  const addProduct = async (data: { title: string; description: string; category: string; price: number; images?[]; condition?; tags?[]; quantity?; details?: any; extras?: any; workingCondition? }) => {
+  const addProduct = async (data: { title: string; description: string; category: string; price: number; images?[]; condition?; tags?[]; quantity?; details?: any; extras?) => {
     try {
       const payload: any = {
         title: data.title,

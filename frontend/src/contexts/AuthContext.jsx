@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
       setAuthToken(t); // set bearer for axios
       localStorage.setItem('ecofinds-auth', JSON.stringify({ user: u, token: t }));
       return true;
-    } catch (e: any) {
+    } catch (e) {
       setLastError(e?.response?.data?.message || e.message);
       return false;
     } finally {
@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signup = async (email, password, name, avatar? | null) => {
+  const signup = async (email, password, name, avatar) => {
     setIsLoading(true);
     try {
       lastActionRef.current = 'register';
@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }) => {
       setAuthToken(t);
       localStorage.setItem('ecofinds-auth', JSON.stringify({ user: u, token: t }));
       return true;
-    } catch (e: any) {
+    } catch (e) {
       setLastError(e?.response?.data?.message || e.message);
       return false;
     } finally {
@@ -89,7 +89,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     lastActionRef.current = 'logout';
-    try { await api.post('/api/auth/logout'); } catch (e: any) { setLastError(e?.message); }
+    try { await api.post('/api/auth/logout'); } catch (e) { setLastError(e?.message); }
     setUser(null);
     setToken(null);
     setAuthToken(undefined);
@@ -105,7 +105,7 @@ export const AuthProvider = ({ children }) => {
       setUser(updatedUser);
       const stored = JSON.parse(localStorage.getItem('ecofinds-auth') || '{}');
       localStorage.setItem('ecofinds-auth', JSON.stringify({ ...stored, user: updatedUser }));
-    } catch (e: any) {
+    } catch (e) {
       setLastError(e?.response?.data?.message || e.message);
     }
   };
