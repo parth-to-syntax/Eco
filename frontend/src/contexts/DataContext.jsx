@@ -252,7 +252,7 @@ export const DataProvider = ({ children }) => {
     localStorage.setItem('thrift-earth-cart', JSON.stringify({ ...cart, items: [] }));
   };
 
-  const checkout = async (paymentMethod: 'pay_later' | 'razorpay' = 'razorpay') => {
+  const checkout = async (paymentMethod = 'razorpay') => {
     if (!cart || cart.items.length === 0) return;
 
     try {
