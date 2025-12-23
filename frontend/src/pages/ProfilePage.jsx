@@ -57,7 +57,7 @@ export const ProfilePage = () => {
       const reader = new FileReader();
       reader.onload = (e) => {
         if (e.target?.result) {
-          setEditForm(prev => ({ ...prev, profileImage: e.target!.result as string }));
+          setEditForm(prev => ({ ...prev, profileImage: e.target.result as string }));
         }
       };
       reader.readAsDataURL(file);

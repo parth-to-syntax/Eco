@@ -14,8 +14,8 @@ import { useNavigate } from 'react-router-dom';
 export const ProductsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
-  const [sortMode, setSortMode] = useState<'price-asc'|'price-desc'|'newest'|'oldest'>('newest');
-  const [groupBy, setGroupBy] = useState<'none'|'category'>('none');
+  const [sortMode, setSortMode] = useState('newest');
+  const [groupBy, setGroupBy] = useState('none');
   const { products, addToCart, loadingProducts, productsError, refreshProducts, categories, loadingCategories, categoriesError } = useData();
   const { user } = useAuth();
   const navigate = useNavigate();

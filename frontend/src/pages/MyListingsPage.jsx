@@ -15,9 +15,9 @@ export const MyListingsPage = () => {
   const { deleteProduct } = useData();
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [userProducts, setUserProducts] = React.useState<any[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<string | null>(null);
+  const [userProducts, setUserProducts] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
 
   const fetchUserProducts = React.useCallback(async () => {
     if (!user) return;

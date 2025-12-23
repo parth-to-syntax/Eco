@@ -19,7 +19,7 @@ export const AddProductPage = () => {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState('');
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState([]);
   const [quantity, setQuantity] = useState('1');
   const [condition, setCondition] = useState('');
   const [yearOfManufacture, setYearOfManufacture] = useState('');
@@ -202,7 +202,7 @@ export const AddProductPage = () => {
       const reader = new FileReader();
       reader.onload = (e) => {
         if (e.target?.result) {
-          setImages(prev => [...prev, e.target!.result as string]);
+          setImages(prev => [...prev, e.target.result as string]);
         }
       };
       reader.readAsDataURL(file);

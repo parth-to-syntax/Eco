@@ -90,18 +90,18 @@ export function useData() {
 // Static categories removed; now fetched from backend only.
 
 export const DataProvider = ({ children }) => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loadingProducts, setLoadingProducts] = useState<boolean>(true);
-  const [productsError, setProductsError] = useState<string | null>(null);
-  const [cart, setCart] = useState<Cart | null>(null);
-  const [loadingCart, setLoadingCart] = useState<boolean>(false);
-  const [cartError, setCartError] = useState<string | null>(null);
-  const [purchases, setPurchases] = useState<Purchase[]>([]);
-  const [loadingPurchases, setLoadingPurchases] = useState<boolean>(false);
-  const [purchasesError, setPurchasesError] = useState<string | null>(null);
-  const [categories, setCategories] = useState<string[]>(['All Categories']);
-  const [loadingCategories, setLoadingCategories] = useState<boolean>(false);
-  const [categoriesError, setCategoriesError] = useState<string | null>(null);
+  const [products, setProducts] = useState([]);
+  const [loadingProducts, setLoadingProducts] = useState(true);
+  const [productsError, setProductsError] = useState(null);
+  const [cart, setCart] = useState(null);
+  const [loadingCart, setLoadingCart] = useState(false);
+  const [cartError, setCartError] = useState(null);
+  const [purchases, setPurchases] = useState([]);
+  const [loadingPurchases, setLoadingPurchases] = useState(false);
+  const [purchasesError, setPurchasesError] = useState(null);
+  const [categories, setCategories] = useState(['All Categories']);
+  const [loadingCategories, setLoadingCategories] = useState(false);
+  const [categoriesError, setCategoriesError] = useState(null);
   const { user, isLoading: authLoading } = useAuth();
 
   // Fetch products from backend

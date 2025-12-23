@@ -37,11 +37,11 @@ export function useAuth() {
 }
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [lastError, setLastError] = useState<string | null>(null);
-  const [lastAction, setLastAction] = useState<string | null>(null);
+  const [lastError, setLastError] = useState(null);
+  const [lastAction, setLastAction] = useState(null);
   const lastActionRef = React.useRef<string | null>(null);
 
   useEffect(() => {
