@@ -122,7 +122,7 @@ export const CartPage = () => {
                           size="sm"
                           variant="outline"
                           onClick={() => handleQuantityChange(item.productId, item.quantity - 1)}
-                          className="h-8 w-8 p-0"
+                          className="h-8 w-8 p-0 border-gray-700 hover:bg-red-500/20 hover:border-red-500"
                           disabled={item.quantity <= 1}
                         >
                           <Minus className="h-3 w-3" />
@@ -134,7 +134,7 @@ export const CartPage = () => {
                           size="sm"
                           variant="outline"
                           onClick={() => handleQuantityChange(item.productId, item.quantity + 1)}
-                          className="h-8 w-8 p-0"
+                          className="h-8 w-8 p-0 border-gray-700 hover:bg-red-500/20 hover:border-red-500"
                         >
                           <Plus className="h-3 w-3" />
                         </Button>

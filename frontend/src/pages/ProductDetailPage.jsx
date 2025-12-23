@@ -46,16 +46,16 @@ export const ProductDetailPage = () => {
     const success = await addToCart(product.id);
     if (success) {
       toast({
-        title: "Added to cart",
+        title: "✅ Added to cart",
         description: `${product.title} has been added to your cart`,
         duration: 2500,
       });
     } else {
       toast({
-        title: "Cannot add to cart",
-        description: "You cannot add your own products to cart.",
+        title: "🚫 Cannot Add to Cart",
+        description: "You cannot purchase your own products. This item belongs to you!",
         variant: "destructive",
-        duration: 3000,
+        duration: 4000,
       });
     }
   };
@@ -260,7 +260,7 @@ export const ProductDetailPage = () => {
               <div className="space-y-3">
                 <Button
                   onClick={handleAddToCart}
-                  className="w-full bg-gradient-to-r from-[#00BFFF] to-[#00B894] hover:from-[#00B894] hover:to-[#00BFFF] text-white text-lg py-6"
+                  className="w-full bg-gradient-to-r from-red-500 to-pink-500 hover:from-pink-500 hover:to-red-500 text-white text-lg py-6 shadow-lg shadow-red-500/30"
                 >
                   <ShoppingCart className="h-5 w-5 mr-2" />
                   Add to Cart

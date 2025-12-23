@@ -81,16 +81,16 @@ export const ProductsPage = () => {
     const success = await addToCart(productId);
     if (success) {
       toast({
-        title: "Added to cart",
+        title: "✅ Added to cart",
         description: "Product added to your cart successfully!",
         duration: 2500,
       });
     } else {
       toast({
-        title: "Cannot add to cart",
-        description: "You cannot add your own products to cart.",
+        title: "🚫 Cannot Add to Cart",
+        description: "You cannot purchase your own products!",
         variant: "destructive",
-        duration: 3000,
+        duration: 4000,
       });
     }
   };
@@ -125,7 +125,7 @@ export const ProductsPage = () => {
               placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 bg-[#1B1B1B]/50 backdrop-blur-sm border border-gray-700 text-white placeholder-gray-400 focus:border-[#00BFFF] focus:ring-[#00BFFF]/20"
+              className="pl-10 bg-[#1B1B1B]/50 backdrop-blur-sm border border-gray-700 text-white placeholder-gray-400 focus:border-red-500 focus:ring-red-500/20"
             />
           </div>
 
@@ -145,8 +145,8 @@ export const ProductsPage = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`transition-all duration-200 ${
                   selectedCategory === category 
-                    ? 'bg-gradient-to-r from-[#00BFFF] to-[#00B894] text-white shadow-lg hover:shadow-[#00BFFF]/20' 
-                    : 'bg-[#1B1B1B]/50 backdrop-blur-sm border border-gray-700 text-gray-300 hover:bg-[#00BFFF]/10 hover:border-[#00BFFF]/50'
+                    ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white shadow-lg hover:shadow-red-500/20' 
+                    : 'bg-[#1B1B1B]/50 backdrop-blur-sm border border-gray-700 text-gray-300 hover:bg-red-500/10 hover:border-red-500/50'
                 }`}
               >
                 {category}
@@ -198,7 +198,7 @@ export const ProductsPage = () => {
       <section className="container mx-auto px-4 pb-16">
         {loadingProducts && (
           <div className="text-center py-16 animate-fade-in">
-            <div className="w-12 h-12 mx-auto mb-4 border-4 border-[#00BFFF] border-t-transparent rounded-full animate-spin" />
+            <div className="w-12 h-12 mx-auto mb-4 border-4 border-red-500 border-t-transparent rounded-full animate-spin" />
             <p className="text-muted-foreground">Loading products...</p>
           </div>
         )}
@@ -235,16 +235,16 @@ export const ProductsPage = () => {
                 <div key={`group-${product.category}-${index}`} className="col-span-full mt-8 mb-2">
                   <div className="flex items-center justify-between">
                     <h2 className="text-lg font-light tracking-wide text-gray-200 flex items-center gap-2">
-                      <span className="px-3 py-1 rounded-full bg-[#1B1B1B]/70 border border-gray-700 text-[#00BFFF]">{product.category}</span>
+                      <span className="px-3 py-1 rounded-full bg-[#1B1B1B]/70 border border-gray-700 text-red-400">{product.category}</span>
                       <span className="text-xs text-gray-500">{product.count} item{product.count !== 1 ? 's' : ''}</span>
                     </h2>
-                    <div className="h-px flex-1 ml-4 bg-gradient-to-r from-[#00BFFF]/40 to-transparent" />
+                    <div className="h-px flex-1 ml-4 bg-gradient-to-r from-red-500/40 to-transparent" />
                   </div>
                 </div>
               ) : (
               <Card
                 key={product.id}
-                className="group cursor-pointer overflow-hidden bg-[#1B1B1B]/80 backdrop-blur-sm border border-gray-700 hover:shadow-lg hover:shadow-[#00BFFF]/20 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] animate-fade-in hover-glow"
+                className="group cursor-pointer overflow-hidden bg-[#1B1B1B]/80 backdrop-blur-sm border border-gray-700 hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] animate-fade-in"
                 style={{ animationDelay: `${index * 100}ms` }}
                 onClick={() => handleProductClick(product.id)}
               >
@@ -296,7 +296,7 @@ export const ProductsPage = () => {
                       <Button
                         size="sm"
                         onClick={(e) => handleAddToCart(product.id, e)}
-                        className="bg-gradient-to-r from-[#00BFFF] to-[#00B894] hover:from-[#00B894] hover:to-[#00BFFF] text-white"
+                        className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-pink-500 hover:to-red-500 text-white shadow-lg shadow-red-500/30"
                       >
                         Add to Cart
                       </Button>
@@ -313,7 +313,7 @@ export const ProductsPage = () => {
       {/* Floating Add Button */}
       <Button
         onClick={() => navigate('/add-product')}
-        className="fixed bottom-6 right-6 h-14 w-14 rounded-full bg-gradient-to-r from-[#00BFFF] to-[#00B894] hover:from-[#00B894] hover:to-[#00BFFF] text-white shadow-xl hover:shadow-2xl hover:shadow-[#00BFFF]/30 transition-all duration-300 hover:scale-110 animate-bounce hover-glow"
+        className="fixed bottom-6 right-6 h-14 w-14 rounded-full bg-gradient-to-r from-red-500 to-pink-500 hover:from-pink-500 hover:to-red-500 text-white shadow-xl hover:shadow-2xl hover:shadow-red-500/50 transition-all duration-300 hover:scale-110 animate-bounce"
         style={{ animationDuration: '2s', animationIterationCount: '3' }}
       >
         <Plus className="h-6 w-6" />

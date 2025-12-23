@@ -87,7 +87,7 @@ export const MyListingsPage = () => {
         {/* Products Grid */}
         {loading && (
           <div className="text-center py-16 animate-fade-in">
-            <div className="w-12 h-12 mx-auto mb-4 border-4 border-[#00BFFF] border-t-transparent rounded-full animate-spin" />
+            <div className="w-12 h-12 mx-auto mb-4 border-4 border-red-500 border-t-transparent rounded-full animate-spin" />
             <p className="text-muted-foreground">Loading your listings...</p>
           </div>
         )}

@@ -510,7 +510,7 @@ export const AddProductPage = () => {
                   </Button>
                   <Button
                     type="submit"
-                    className="flex-1 bg-gradient-to-r from-[#00BFFF] to-[#00B894] hover:from-[#00B894] hover:to-[#00BFFF] text-white"
+                    className="flex-1 bg-gradient-to-r from-red-500 to-pink-500 hover:from-pink-500 hover:to-red-500 text-white shadow-lg shadow-red-500/30"
                   >
                     {isEdit ? 'Update Product' : 'List Product'}
                   </Button>
