@@ -12,7 +12,7 @@ import orderRoutes from './routes/orderRoutes.js';
 const app = express();
 
 // Allow multiple origins (comma separated) e.g. CORS_ORIGIN="http://localhost:5173,http://localhost:8080"
-const originList = (process.env.CORS_ORIGIN || 'http://localhost:5173,http://localhost:8080')
+const originList = (process.env.CORS_ORIGIN || 'http://localhost:5173,http://localhost:8080,http://localhost:8081')
   .split(',')
   .map(o => o.trim())
   .filter(Boolean);
