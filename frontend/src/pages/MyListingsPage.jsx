@@ -10,7 +10,7 @@ import { Plus, Edit, Trash2, Package } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 
-export const MyListingsPage: React.FC = () => {
+export const MyListingsPage = () => {
   const { user } = useAuth();
   const { deleteProduct } = useData();
   const navigate = useNavigate();

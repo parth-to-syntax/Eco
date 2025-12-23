@@ -17,7 +17,7 @@ interface RazorpayCheckoutProps {
   children?: React.ReactNode;
 }
 
-export const RazorpayCheckout: React.FC<RazorpayCheckoutProps> = ({
+export const RazorpayCheckout = ({
   amount,
   onSuccess,
   onError,

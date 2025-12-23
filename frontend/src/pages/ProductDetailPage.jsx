@@ -8,7 +8,7 @@ import { ArrowLeft, ShoppingCart, User, Calendar } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 
-export const ProductDetailPage: React.FC = () => {
+export const ProductDetailPage = () => {
   const { productId } = useParams();
   const { products, addToCart } = useData();
   const navigate = useNavigate();

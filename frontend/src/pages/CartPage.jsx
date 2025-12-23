@@ -9,7 +9,7 @@ import { Minus, Plus, Trash2, ShoppingCart } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 
-export const CartPage: React.FC = () => {
+export const CartPage = () => {
   const { cart, products, updateCartQuantity, removeFromCart, checkout } = useData();
   const navigate = useNavigate();
   const { toast } = useToast();

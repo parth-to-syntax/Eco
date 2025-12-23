@@ -11,7 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Search, Plus, Filter } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-export const ProductsPage: React.FC = () => {
+export const ProductsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
   const [sortMode, setSortMode] = useState<'price-asc'|'price-desc'|'newest'|'oldest'>('newest');

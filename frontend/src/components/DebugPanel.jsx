@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 
-export const DebugPanel: React.FC = () => {
+export const DebugPanel = () => {
   const { debug } = useAuth();
   if (!debug) return null;
 

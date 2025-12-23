@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { User, Edit, Check, X, ShoppingBag, Package, Mail, Phone, Camera } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-export const ProfilePage: React.FC = () => {
+export const ProfilePage = () => {
   const { user, updateProfile } = useAuth();
   const { purchases, products } = useData();
   const { toast } = useToast();

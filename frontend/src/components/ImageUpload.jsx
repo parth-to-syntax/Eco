@@ -9,7 +9,7 @@ interface ImageUploadProps {
   onRemoveImage: (index: number) => void;
 }
 
-export const ImageUpload: React.FC<ImageUploadProps> = ({
+export const ImageUpload = ({
   onImageUpload,
   images,
   onRemoveImage

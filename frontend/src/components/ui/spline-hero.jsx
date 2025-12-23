@@ -4,7 +4,7 @@ interface SplineHeroProps {
   className?: string;
 }
 
-export const SplineHero: React.FC<SplineHeroProps> = ({ className = "" }) => {
+export const SplineHero = ({ className = "" }) => {
   return (
     <div className={`relative w-full ${className}`}>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/10 to-background/80 z-10 pointer-events-none" />

@@ -9,7 +9,7 @@ import { Package } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 
-export const AuthPage: React.FC = () => {
+export const AuthPage = () => {
   // Default avatar fallback (external URL)
   const DEFAULT_AVATAR_URL = 'https://static.vecteezy.com/system/resources/previews/059/969/644/large_2x/modern-profile-avatar-set-in-black-and-white-featuring-male-and-female-icons-for-ui-design-web-applications-and-professional-use-free-vector.jpg';
   const [isLogin, setIsLogin] = useState(true);
