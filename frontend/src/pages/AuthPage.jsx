@@ -73,9 +73,9 @@ export const AuthPage = () => {
           return;
         }
       } else {
-        let avatarToSend: string | null = null;
+        let avatarToSend = null;
         if (avatarFile) {
-          avatarToSend = await new Promise<string | null>((resolve) => {
+          avatarToSend = await new Promise((resolve) => {
             const reader = new FileReader();
             reader.onload = () => resolve(reader.result);
             reader.onerror = () => resolve(null);

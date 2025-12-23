@@ -179,7 +179,7 @@ export const ProfilePage = () => {
                       <div className="flex items-center space-x-3">
                         <User className="h-4 w-4 text-muted-foreground" />
                         <span className="text-muted-foreground">Name:</span>
-                        <span className="font-medium">{(user?.name}</span>
+                        <span className="font-medium">{user?.name}</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <Mail className="h-4 w-4 text-muted-foreground" />

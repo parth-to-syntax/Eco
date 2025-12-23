@@ -63,10 +63,10 @@ export const ProductsPage = () => {
       for (const p of filtered) {
         const key = p.category || 'Uncategorized';
         if (!groups.has(key)) groups.set(key, []);
-        groups.get(key)!.push(p);
+        groups.get(key).push(p);
       }
       // Flatten with headers
-      const flat: any[] = [];
+      const flat = [];
       for (const [cat, list] of groups.entries()) {
         flat.push({ __group: true, category: cat, count: list.length });
         flat.push(...list);

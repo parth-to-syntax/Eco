@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ShoppingBag, Heart, Search, Leaf, ShoppingCart, User, TrendingUp } from 'lucide-react';
-import { api } from '@/api/client.ts.jsx';
-import { useToast } from '@/hooks/use-toast.ts.jsx';
+import { api } from '@/api/client';
+import { useToast } from '@/hooks/use-toast';
 
 const LandingPage = () => {
   const [products, setProducts] = useState([]);
