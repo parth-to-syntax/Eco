@@ -189,7 +189,7 @@ export const DataProvider = ({ children }) => {
 
   const updateProduct = async (id, updates) => {
     try {
-      const payload: any = { ...updates };
+      const payload = { ...updates };
       if (updates.images) payload.images = updates.images;
       const res = await api.put(`/api/products/${id}`, payload);
       const mapped = mapBackendProduct(res.data);
