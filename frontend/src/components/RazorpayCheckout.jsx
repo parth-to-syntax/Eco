@@ -2,12 +2,6 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 
-declare global {
-  interface Window {
-    Razorpay: any;
-  }
-}
-
 export const RazorpayCheckout = ({
   amount,
   onSuccess,

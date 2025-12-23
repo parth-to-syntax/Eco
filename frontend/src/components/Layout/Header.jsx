@@ -79,9 +79,9 @@ export const Header = () => {
               className="w-10 h-10 rounded-full overflow-hidden border border-gray-600 hover:ring-2 hover:ring-[#00BFFF] cursor-pointer transition-all"
               onClick={() => handleNavigation('/profile')}
             >
-              {(user as any)?.profileImage || user?.avatar ? (
+              {user?.profileImage || user?.avatar ? (
                 <img
-                  src={(user as any)?.profileImage || (user as any)?.avatar}
+                  src={user?.profileImage || user?.avatar}
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />
