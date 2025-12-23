@@ -210,7 +210,7 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  const addToCart = async (productId, quantity: number = 1) => {
+  const addToCart = async (productId, quantity = 1) => {
     try {
       await api.post('/api/cart/add', { productId, quantity });
       fetchCart();
