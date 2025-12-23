@@ -29,7 +29,7 @@ export const AuthPage = () => {
 
   const generateInitialsDataUri = (full) => {
     const initials = initialsFromName(full) || '?';
-    const bg = '#0ea5e9'; // Tailwind sky-500
+    const bg = '#ef4444'; // Red-500
     const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='256' height='256'>`+
       `<rect width='256' height='256' rx='128' fill='${bg}'/>`+
       `<text x='50%' y='50%' dy='.1em' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-size='110' fill='#fff' font-weight='600'>${initials}</text>`+
@@ -203,7 +203,7 @@ export const AuthPage = () => {
                           draggable={false}
                         />
                       ) : name.trim() ? (
-                        <div className="w-full h-full flex items-center justify-center bg-sky-500 text-white font-semibold text-lg select-none">
+                        <div className="w-full h-full flex items-center justify-center bg-red-500 text-white font-semibold text-lg select-none">
                           {initials}
                         </div>
                       ) : (
