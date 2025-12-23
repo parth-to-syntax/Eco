@@ -76,14 +76,23 @@ export const ProductsPage = () => {
     return filtered;
   }, [products, selectedCategory, searchQuery, user, sortMode, groupBy]);
 
-  const handleAddToCart = (productId, e) => {
+  const handleAddToCart = async (productId, e) => {
     e.stopPropagation();
-    addToCart(productId);
-    toast({
-      title: "Added to cart",
-      description: "Product added to your cart successfully!",
-      duration: 2500,
-    });
+    const success = await addToCart(productId);
+    if (success) {
+      toast({
+        title: "Added to cart",
+        description: "Product added to your cart successfully!",
+        duration: 2500,
+      });
+    } else {
+      toast({
+        title: "Cannot add to cart",
+        description: "You cannot add your own products to cart.",
+        variant: "destructive",
+        duration: 3000,
+      });
+    }
   };
 
   const handleProductClick = (productId) => {

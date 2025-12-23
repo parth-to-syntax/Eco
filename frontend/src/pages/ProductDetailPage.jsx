@@ -32,7 +32,7 @@ export const ProductDetailPage = () => {
     );
   }
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     if (!user) {
       toast({
         title: "Sign in Required",
@@ -43,12 +43,21 @@ export const ProductDetailPage = () => {
       return;
     }
     
-    addToCart(product.id);
-    toast({
-      title: "Added to cart",
-      description: `${product.title} has been added to your cart`,
-      duration: 2500,
-    });
+    const success = await addToCart(product.id);
+    if (success) {
+      toast({
+        title: "Added to cart",
+        description: `${product.title} has been added to your cart`,
+        duration: 2500,
+      });
+    } else {
+      toast({
+        title: "Cannot add to cart",
+        description: "You cannot add your own products to cart.",
+        variant: "destructive",
+        duration: 3000,
+      });
+    }
   };
 
   return (

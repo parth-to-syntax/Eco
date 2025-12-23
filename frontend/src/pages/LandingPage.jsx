@@ -23,14 +23,14 @@ const LandingPage = () => {
       <div className="relative h-screen overflow-hidden">
         <SplineHero className="h-full" />
         
-        <div className="absolute inset-0 z-20 flex items-center justify-center">
+        <div className="absolute inset-0 z-20 flex items-end justify-center pb-32">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center space-y-8">
+            <div className="max-w-4xl mx-auto text-center">
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   size="lg" 
                   onClick={handleBrowseProducts}
-                  className="text-lg px-10 py-7 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 border-0"
+                  className="text-lg px-10 py-7 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 border-0"
                 >
                   <Search className="mr-2 h-5 w-5" />
                   Browse Products
@@ -40,7 +40,7 @@ const LandingPage = () => {
                   size="lg" 
                   variant="outline" 
                   onClick={() => navigate('/auth')} 
-                  className="text-lg px-10 py-7 border-emerald-500/50 hover:bg-emerald-500/10"
+                  className="text-lg px-10 py-7 border-pink-500/50 hover:bg-pink-500/10"
                 >
                   <User className="mr-2 h-5 w-5" />
                   Get Started
@@ -59,7 +59,7 @@ const LandingPage = () => {
         <div className="container mx-auto px-4 py-12">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-600 to-rose-600 flex items-center justify-center">
                 <Leaf className="w-6 h-6 text-white" />
               </div>
               <span className="text-2xl font-bold">EcoFinds</span>

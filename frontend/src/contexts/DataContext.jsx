@@ -211,11 +211,19 @@ export const DataProvider = ({ children }) => {
   };
 
   const addToCart = async (productId, quantity = 1) => {
+    // Safety check: prevent users from adding their own products to cart
+    const product = products.find(p => p.id === productId);
+    if (product && user && (product.ownerUserId === user.id || product.ownerUserId === user._id)) {
+      console.warn('[CART_BLOCK_OWN_PRODUCT]', productId);
+      return false;
+    }
     try {
       await api.post('/api/cart/add', { productId, quantity });
       fetchCart();
+      return true;
     } catch (e) {
-      // silent for now
+      console.error('[CART_ADD_ERROR]', e);
+      return false;
     }
   };
 

@@ -5,6 +5,12 @@ export async function addToCart(req, res) {
   const { productId, quantity = 1 } = req.body;
   const product = await Product.findById(productId);
   if (!product) return res.status(404).json({ message: 'Product not found' });
+  
+  // Prevent users from adding their own products to cart
+  if (product.seller.toString() === req.user._id.toString()) {
+    return res.status(400).json({ message: 'You cannot add your own products to cart' });
+  }
+  
   const user = await User.findById(req.user._id);
   const existing = user.cart.find((c) => c.product.toString() === productId);
   if (existing) {
