@@ -128,7 +128,7 @@ export const DataProvider = ({ children }) => {
     try {
       const res = await api.get('/api/cart');
       const serverCart = res.data?.cart || [];
-      const mapped: Cart = {
+      const mapped = {
         userId: user.id || user._id,
         items: serverCart.map((c) => ({ productId: c.product?._id || c.product, quantity: c.quantity }))
       };

@@ -106,8 +106,6 @@ function dispatch(action) {
   })
 }
 
-type Toast = Omit<ToasterToast, "id">
-
 function toast({ ...props }) {
   const id = genId()
 
