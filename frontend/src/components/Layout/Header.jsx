@@ -17,9 +17,9 @@ export const Header = () => {
 
   const navItems = [
     { label: 'Products', path: '/products' },
-    { label: 'My Listings', path: '/my-listings' },
-    { label: 'Cart', path: '/cart' },
-    { label: 'Profile', path: '/profile' },
+    { label: 'My Listings', path: '/my-listings', authRequired: true },
+    { label: 'Cart', path: '/cart', authRequired: true },
+    { label: 'Profile', path: '/profile', authRequired: true },
   ];
 
   const handleNavigation = (path) => {
@@ -40,7 +40,7 @@ export const Header = () => {
           {/* Logo */}
           <div
             className="flex items-center space-x-3 cursor-pointer group"
-            onClick={() => handleNavigation('/products')}
+            onClick={() => handleNavigation('/')}
           >
             <div className="h-12 w-12 rounded-full overflow-hidden ring-1 ring-white/20 shadow-sm transition-transform duration-300 group-hover:scale-105">
               <img
@@ -57,7 +57,7 @@ export const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
-            {navItems.filter(item => item.label !== 'Profile').map((item) => (
+            {navItems.filter(item => !item.authRequired || user).map((item) => (
               <button
                 key={item.path}
                 onClick={() => handleNavigation(item.path)}
@@ -74,32 +74,43 @@ export const Header = () => {
               </button>
             ))}
 
-            {/* Profile Avatar */}
-            <div
-              className="w-10 h-10 rounded-full overflow-hidden border border-gray-600 hover:ring-2 hover:ring-[#00BFFF] cursor-pointer transition-all"
-              onClick={() => handleNavigation('/profile')}
-            >
-              {user?.profileImage || user?.avatar ? (
-                <img
-                  src={user?.profileImage || user?.avatar}
-                  alt="Profile"
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full bg-gradient-to-br from-[#00BFFF] to-[#00B894] flex items-center justify-center">
-                  <User className="h-5 w-5 text-white" />
+            {user ? (
+              <>
+                {/* Profile Avatar */}
+                <div
+                  className="w-10 h-10 rounded-full overflow-hidden border border-gray-600 hover:ring-2 hover:ring-[#00BFFF] cursor-pointer transition-all"
+                  onClick={() => handleNavigation('/profile')}
+                >
+                  {user?.profileImage || user?.avatar ? (
+                    <img
+                      src={user?.profileImage || user?.avatar}
+                      alt="Profile"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-[#00BFFF] to-[#00B894] flex items-center justify-center">
+                      <User className="h-5 w-5 text-white" />
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
 
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleLogout}
-              className="ml-4 border-gray-600 text-gray-300 hover:bg-gray-800"
-            >
-              Logout
-            </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleLogout}
+                  className="ml-4 border-gray-600 text-gray-300 hover:bg-gray-800"
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Button
+                onClick={() => handleNavigation('/auth')}
+                className="bg-[#00BFFF] hover:bg-[#00BFFF]/90 text-white"
+              >
+                Sign In
+              </Button>
+            )}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -112,30 +123,21 @@ export const Header = () => {
         </div>
       </header>
 
-      {/* Mobile Menu Tray */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 md:hidden">
-          <div
-            className="fixed inset-0 bg-background/80 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-          <div className="fixed right-0 top-0 h-full w-80 bg-card border-l border-border animate-slide-in-right">
-            <div className="flex items-center justify-between p-4 border-b border-border">
-              <div className="flex items-center space-x-2">
-                <div className="w-6 h-6 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center">
-                  <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center">
-                    <div className="w-3 h-3 bg-gradient-to-br from-primary to-primary/80 rounded-full"></div>
-                  </div>
-                </div>
-                <span className="font-light text-lg">thrift earth</span>
-              </div>
+        <div className="fixed inset-0 z-50 md:hidden bg-black/90 backdrop-blur-md">
+          <div className="flex flex-col h-full">
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 border-b border-gray-800">
+              <span className="text-xl font-light text-white">Menu</span>
               <button onClick={() => setIsMobileMenuOpen(false)}>
-                <X className="h-6 w-6" />
+                <X className="h-6 w-6 text-white" />
               </button>
             </div>
 
-            <nav className="p-4 space-y-4">
-              {navItems.filter(item => item.label !== 'Profile').map((item) => (
+            {/* Nav Items */}
+            <nav className="flex-1 overflow-y-auto p-4 space-y-2">
+              {navItems.filter(item => !item.authRequired || user).map((item) => (
                 <button
                   key={item.path}
                   onClick={() => handleNavigation(item.path)}
@@ -154,34 +156,45 @@ export const Header = () => {
                 </button>
               ))}
 
-              <div className="pt-4 border-t border-gray-700">
-                <div className="flex items-center space-x-3 p-3 rounded-lg bg-gray-800/50">
-                  <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-600">
-                    {user?.profileImage || user?.avatar ? (
-                      <img
-                        src={user?.profileImage || user?.avatar}
-                        alt="Profile"
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-[#00BFFF] to-[#00B894] flex items-center justify-center">
-                        <User className="h-5 w-5 text-white" />
-                      </div>
-                    )}
+              {user ? (
+                <div className="pt-4 border-t border-gray-700">
+                  <div className="flex items-center space-x-3 p-3 rounded-lg bg-gray-800/50">
+                    <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-600">
+                      {user?.profileImage || user?.avatar ? (
+                        <img
+                          src={user?.profileImage || user?.avatar}
+                          alt="Profile"
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-[#00BFFF] to-[#00B894] flex items-center justify-center">
+                          <User className="h-5 w-5 text-white" />
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <p className="font-medium text-white">{user?.name}</p>
+                      <p className="text-sm text-gray-400">{user?.email}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium text-white">{user?.name}</p>
-                    <p className="text-sm text-gray-400">{user?.email}</p>
-                  </div>
+                  <Button
+                    variant="outline"
+                    className="w-full mt-4 border-gray-600 text-gray-300 hover:bg-gray-800"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Button>
                 </div>
-                <Button
-                  variant="outline"
-                  className="w-full mt-4 border-gray-600 text-gray-300 hover:bg-gray-800"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </Button>
-              </div>
+              ) : (
+                <div className="pt-4 border-t border-gray-700">
+                  <Button
+                    className="w-full bg-[#00BFFF] hover:bg-[#00BFFF]/90 text-white"
+                    onClick={() => handleNavigation('/auth')}
+                  >
+                    Sign In
+                  </Button>
+                </div>
+              )}
             </nav>
           </div>
         </div>

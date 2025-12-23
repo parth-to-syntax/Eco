@@ -44,11 +44,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/auth" element={<AuthPage />} />
-              <Route path="/products" element={
-                <ProtectedRoute>
-                  <ProductsPage />
-                </ProtectedRoute>
-              } />
+              <Route path="/products" element={<ProductsPage />} />
               <Route path="/add-product" element={
                 <ProtectedRoute>
                   <AddProductPage />
