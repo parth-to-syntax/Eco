@@ -64,19 +64,19 @@ export const ProductDetailPage = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-6 sm:py-8">
         <div className="max-w-6xl mx-auto">
           {/* Back Button */}
           <Button
             variant="ghost"
             onClick={() => navigate(-1)}
-            className="mb-6 animate-fade-in"
+            className="mb-4 sm:mb-6 animate-fade-in -ml-2"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back
           </Button>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {/* Product Images */}
             <div className="space-y-4 animate-fade-in">
               <Card className="overflow-hidden bg-card/80 backdrop-blur-sm border-border/50">
@@ -114,15 +114,15 @@ export const ProductDetailPage = () => {
             </div>
 
             {/* Product Info */}
-            <div className="space-y-6 animate-fade-in" style={{ animationDelay: '200ms' }}>
+            <div className="space-y-4 sm:space-y-6 animate-fade-in" style={{ animationDelay: '200ms' }}>
               <div>
-                <Badge variant="secondary" className="mb-3">
+                <Badge variant="secondary" className="mb-2 sm:mb-3">
                   {product.category}
                 </Badge>
-                <h1 className="text-3xl font-light tracking-tight mb-4">
+                <h1 className="text-2xl sm:text-3xl font-light tracking-tight mb-3 sm:mb-4">
                   {product.title}
                 </h1>
-                <div className="text-3xl font-semibold text-[#00BFFF] mb-6">
+                <div className="text-2xl sm:text-3xl font-semibold text-[#00BFFF] mb-4 sm:mb-6">
                   ₹{product.price.toFixed(2)}
                 </div>
               </div>
@@ -137,9 +137,9 @@ export const ProductDetailPage = () => {
               </Card>
 
               <Card className="bg-[#1B1B1B]/80 backdrop-blur-sm border border-gray-700">
-                <CardContent className="p-6">
-                  <h3 className="font-medium mb-4 text-white">Product Specifications</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <CardContent className="p-4 sm:p-6">
+                  <h3 className="font-medium mb-3 sm:mb-4 text-white text-sm sm:text-base">Product Specifications</h3>
+                  <div className="grid grid-cols-1 gap-3 sm:gap-4 text-xs sm:text-sm">
                     <div className="space-y-3">
                       <div className="flex justify-between">
                         <span className="text-gray-400">Condition:</span>

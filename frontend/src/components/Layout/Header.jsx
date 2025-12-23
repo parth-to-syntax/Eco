@@ -39,10 +39,10 @@ export const Header = () => {
         <div className="container flex h-16 items-center justify-between px-4 mx-auto">
           {/* Logo */}
           <div
-            className="flex items-center space-x-3 cursor-pointer group"
+            className="flex items-center space-x-2 sm:space-x-3 cursor-pointer group"
             onClick={() => handleNavigation('/')}
           >
-            <div className="h-12 w-12 rounded-full overflow-hidden ring-1 ring-white/20 shadow-sm transition-transform duration-300 group-hover:scale-105">
+            <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full overflow-hidden ring-1 ring-white/20 shadow-sm transition-transform duration-300 group-hover:scale-105">
               <img
                 src={logoImg}
                 alt="Logo"
@@ -50,7 +50,7 @@ export const Header = () => {
                 draggable={false}
               />
             </div>
-            <span className="text-2xl font-light tracking-tight text-foreground">
+            <span className="text-lg sm:text-2xl font-light tracking-tight text-foreground">
               Thrift earth
             </span>
           </div>

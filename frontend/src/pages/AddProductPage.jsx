@@ -224,10 +224,10 @@ export const AddProductPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <Header />
       
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-6 sm:py-8">
         <div className="max-w-2xl mx-auto">
           {/* Header */}
-          <div className="flex items-center space-x-4 mb-8 animate-fade-in">
+          <div className="flex items-center space-x-3 sm:space-x-4 mb-6 sm:mb-8 animate-fade-in">
             <Button
               variant="ghost"
               size="sm"
@@ -237,10 +237,10 @@ export const AddProductPage = () => {
               <ArrowLeft className="h-4 w-4" />
             </Button>
             <div>
-              <h1 className="text-2xl font-light tracking-tight text-white">
+              <h1 className="text-xl sm:text-2xl font-light tracking-tight text-white">
                 {isEdit ? 'Edit Product' : 'Add New Product'}
               </h1>
-              <p className="text-gray-400">
+              <p className="text-gray-400 text-sm sm:text-base">
                 {isEdit ? 'Update your product details' : 'List a new item for sale'}
               </p>
             </div>

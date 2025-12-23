@@ -104,7 +104,7 @@ export const ProductsPage = () => {
       <Header />
       
       {/* Hero Section with Spline */}
-      <section className="relative h-96 md:h-[500px] overflow-hidden">
+      <section className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] overflow-hidden">
         <SplineHero className="h-full" />
         <div className="absolute inset-0 flex items-center justify-center z-20">
           <div className="text-center text-white animate-fade-in">
@@ -112,12 +112,12 @@ export const ProductsPage = () => {
           </div>
         </div>
         {/* Smooth gradient transition */}
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background via-background/80 to-transparent z-30 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-20 bg-gradient-to-t from-background via-background/80 to-transparent z-30 pointer-events-none" />
       </section>
 
       {/* Search and Filters */}
-      <section className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
+      <section className="container mx-auto px-4 py-6 sm:py-8">
+        <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6 animate-fade-in">
           {/* Search Bar */}
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -125,7 +125,7 @@ export const ProductsPage = () => {
               placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 bg-[#1B1B1B]/50 backdrop-blur-sm border border-gray-700 text-white placeholder-gray-400 focus:border-red-500 focus:ring-red-500/20"
+              className="pl-10 h-12 sm:h-10 text-base sm:text-sm bg-[#1B1B1B]/50 backdrop-blur-sm border border-gray-700 text-white placeholder-gray-400 focus:border-red-500 focus:ring-red-500/20"
             />
           </div>
 
@@ -229,7 +229,7 @@ export const ProductsPage = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {processedProducts.map((product, index) => (
               product.__group ? (
                 <div key={`group-${product.category}-${index}`} className="col-span-full mt-8 mb-2">
@@ -312,13 +312,14 @@ export const ProductsPage = () => {
       </section>
 
       {/* Floating Add Button */}
-      <Button
-        onClick={() => navigate('/add-product')}
-        className="fixed bottom-6 right-6 h-14 w-14 rounded-full bg-gradient-to-r from-red-500 to-pink-500 hover:from-pink-500 hover:to-red-500 text-white shadow-xl hover:shadow-2xl hover:shadow-red-500/50 transition-all duration-300 hover:scale-110 animate-bounce"
-        style={{ animationDuration: '2s', animationIterationCount: '3' }}
-      >
-        <Plus className="h-6 w-6" />
-      </Button>
+      {user && (
+        <Button
+          onClick={() => navigate('/add-product')}
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-gradient-to-r from-red-500 to-pink-500 hover:from-pink-500 hover:to-red-500 text-white shadow-xl hover:shadow-2xl hover:shadow-red-500/50 transition-all duration-300 hover:scale-110 z-40"
+        >
+          <Plus className="h-5 w-5 sm:h-6 sm:w-6" />
+        </Button>
+      )}
     </div>
   );
 };

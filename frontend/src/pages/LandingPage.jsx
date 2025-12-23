@@ -19,26 +19,26 @@ const LandingPage = () => {
       <div className="relative h-screen overflow-hidden">
         <SplineHero className="h-full" />
         
-        <div className="absolute inset-0 z-20 flex items-end justify-center pb-32">
+        <div className="absolute inset-0 z-20 flex items-end justify-center pb-16 sm:pb-24 md:pb-32">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                 <Button 
                   size="lg" 
                   onClick={handleBrowseProducts}
-                  className="text-lg px-10 py-7 bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 border-0 shadow-lg shadow-pink-500/50"
+                  className="text-base sm:text-lg px-8 sm:px-10 py-5 sm:py-7 bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 border-0 shadow-lg shadow-pink-500/50 w-full sm:w-auto"
                 >
-                  <Search className="mr-2 h-5 w-5" />
+                  <Search className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                   Browse Products
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
                 <Button 
                   size="lg" 
                   variant="outline" 
                   onClick={() => navigate('/auth')} 
-                  className="text-lg px-10 py-7 border-pink-500 hover:bg-pink-500/20 hover:border-red-500"
+                  className="text-base sm:text-lg px-8 sm:px-10 py-5 sm:py-7 border-pink-500 hover:bg-pink-500/20 hover:border-red-500 w-full sm:w-auto"
                 >
-                  <User className="mr-2 h-5 w-5" />
+                  <User className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                   Get Started
                 </Button>
               </div>
